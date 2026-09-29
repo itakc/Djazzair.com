@@ -4,101 +4,66 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#020817">
-  <meta name="description" content="Djazzair.com — L'intelligence artificielle au service de vos idées. Découvrez SAKSI, votre assistante IA.">
-  <title>Djazzair.com — Intelligence artificielle</title>
+  <meta name="description" content="Djazzair.com — plateforme IA avec SAKSI, assistante intelligente.">
+  <title>Djazzair.com — SAKSI</title>
 
   <style>
     :root{
       --bg:#020817;
-      --bg2:#06152d;
-      --panel:rgba(4,14,34,.72);
-      --line:rgba(65,200,255,.22);
+      --panel:rgba(5,18,43,.18);
+      --panel-strong:rgba(5,18,43,.34);
+      --line:rgba(88,220,255,.28);
+      --line-strong:rgba(88,220,255,.54);
+      --txt:#f6fbff;
+      --muted:#c1d5e5;
       --blue:#31c8ff;
       --blue2:#1596ff;
-      --cyan:#67e8ff;
-      --text:#f5fbff;
-      --muted:#a8bfd3;
-      --shadow:0 0 35px rgba(21,150,255,.24);
+      --cyan:#79ecff;
+      --shadow:0 0 35px rgba(18,153,255,.20);
     }
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-    }
-
-    html{
-      scroll-behavior:smooth;
-    }
-
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    html{ scroll-behavior:smooth; }
     body{
       font-family:Inter,Segoe UI,Arial,sans-serif;
       background:var(--bg);
-      color:var(--text);
+      color:var(--txt);
       overflow-x:hidden;
     }
+    a{ color:inherit; text-decoration:none; }
+    button{ font:inherit; }
 
-    a{
-      color:inherit;
-      text-decoration:none;
-    }
-
-    button{
-      font:inherit;
-    }
-
-    /* ===== HERO ===== */
     .hero{
       min-height:100vh;
       position:relative;
-      display:flex;
-      flex-direction:column;
+      overflow:hidden;
       background:
-        linear-gradient(90deg, rgba(2,8,23,.97) 0%, rgba(2,8,23,.88) 30%, rgba(2,8,23,.58) 48%, rgba(2,8,23,.24) 66%, rgba(2,8,23,.26) 100%),
-        linear-gradient(0deg, rgba(2,8,23,.94) 0%, transparent 34%),
-        url("djazzair-hero.png") center/cover no-repeat;
-      isolation:isolate;
+        linear-gradient(180deg, rgba(2,8,23,.14) 0%, rgba(2,8,23,.08) 20%, rgba(2,8,23,.16) 60%, rgba(2,8,23,.50) 100%),
+        url("djazzair-hero.png") center center / cover no-repeat;
     }
 
     .hero::before{
       content:"";
       position:absolute;
       inset:0;
-      z-index:0;
       pointer-events:none;
       background:
-        radial-gradient(circle at 18% 42%, rgba(0,0,0,.34), transparent 34%),
-        linear-gradient(90deg, rgba(2,8,23,.86) 0%, rgba(2,8,23,.78) 28%, rgba(2,8,23,.44) 52%, transparent 78%);
+        radial-gradient(circle at 50% 100%, rgba(50,183,255,.14), transparent 26%),
+        radial-gradient(circle at 82% 34%, rgba(50,183,255,.08), transparent 18%);
     }
 
-    .hero::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      z-index:-1;
-      background:
-        radial-gradient(circle at 72% 34%, rgba(30,180,255,.15), transparent 26%),
-        radial-gradient(circle at 20% 20%, rgba(0,90,255,.08), transparent 30%);
-      pointer-events:none;
-    }
-
-    .nav,
-    .hero-content,
-    .services{
-      position:relative;
-      z-index:1;
-    }
-
-    /* ===== NAV ===== */
     .nav{
+      position:relative;
+      z-index:5;
       width:min(1440px,92%);
       margin:0 auto;
-      height:86px;
+      height:88px;
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:28px;
-      border-bottom:1px solid rgba(255,255,255,.06);
+      gap:24px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg, rgba(2,8,23,.10), rgba(2,8,23,0));
     }
 
     .brand{
@@ -106,45 +71,42 @@
       font-weight:800;
       letter-spacing:-1px;
       white-space:nowrap;
+      text-shadow:0 0 18px rgba(0,0,0,.25);
     }
-
     .brand span{
-      color:var(--blue);
+      background:linear-gradient(90deg,#5fe6ff,#14a4ff);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
     }
 
     .menu{
       display:flex;
       align-items:center;
-      gap:32px;
-      color:#d7e7f5;
-      font-size:.98rem;
+      gap:34px;
+      color:#eef8ff;
+      font-size:1rem;
+      text-shadow:0 0 12px rgba(0,0,0,.24);
     }
 
     .menu a{
       position:relative;
-      transition:.25s;
+      opacity:.92;
+      transition:.22s;
     }
-
+    .menu a:hover{ opacity:1; }
     .menu a::after{
       content:"";
       position:absolute;
-      left:0;
-      right:0;
-      bottom:-11px;
+      left:0; right:0; bottom:-12px;
       height:2px;
       transform:scaleX(0);
+      transform-origin:center;
+      transition:.22s;
       background:linear-gradient(90deg,var(--blue),var(--cyan));
-      box-shadow:0 0 15px var(--blue);
-      transition:.25s;
+      box-shadow:0 0 18px rgba(49,200,255,.85);
     }
-
-    .menu a:hover{
-      color:#fff;
-    }
-
-    .menu a:hover::after{
-      transform:scaleX(1);
-    }
+    .menu a:hover::after{ transform:scaleX(1); }
 
     .nav-actions{
       display:flex;
@@ -152,279 +114,287 @@
       gap:14px;
     }
 
-    .lang{
-      color:#d8e8f6;
-      border:1px solid rgba(255,255,255,.10);
-      padding:10px 12px;
-      border-radius:12px;
-      background:rgba(0,0,0,.18);
-    }
-
-    .login{
-      padding:11px 20px;
-      border:1px solid var(--blue);
-      border-radius:999px;
-      box-shadow:inset 0 0 16px rgba(49,200,255,.07),0 0 20px rgba(49,200,255,.08);
-      transition:.25s;
-    }
-
-    .login:hover{
-      background:rgba(49,200,255,.10);
-      box-shadow:0 0 25px rgba(49,200,255,.25);
-    }
-
-    /* ===== HERO CONTENT ===== */
-    .hero-content{
-      width:min(1440px,92%);
-      margin:0 auto;
-      flex:1;
-      display:flex;
-      align-items:center;
-      padding:60px 0 130px;
-    }
-
-    .copy{
-      width:min(690px,53vw);
-      padding:0;
-      border-radius:0;
-      background:transparent;
-      border:0;
-      backdrop-filter:none;
-      box-shadow:none;
-    }
-
-    .eyebrow{
-      color:#8bcfff;
-      letter-spacing:.36em;
-      text-transform:uppercase;
-      font-size:.79rem;
-      margin-bottom:18px;
-    }
-
-    h1{
-      font-size:clamp(4rem,7.2vw,7.4rem);
-      line-height:.88;
-      letter-spacing:-4px;
-      margin-bottom:24px;
-    }
-
-    h1 span{
-      background:linear-gradient(90deg,#4ddcff,#1596ff);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-      text-shadow:0 0 30px rgba(49,200,255,.12);
-    }
-
-    .subtitle{
-      font-size:clamp(1.8rem,3vw,3rem);
-      font-weight:700;
-      line-height:1.06;
-      margin-bottom:22px;
-    }
-
-    .subtitle span{
-      color:#71cfff;
-    }
-
-    .lead{
-      max-width:610px;
-      color:#d1dfeb;
-      font-size:1.06rem;
-      line-height:1.75;
-      margin-bottom:34px;
-    }
-
-    .hero-buttons{
-      display:flex;
-      flex-wrap:wrap;
-      gap:16px;
-      align-items:center;
-    }
-
-    .btn-primary{
-      border:0;
-      color:white;
-      cursor:pointer;
-      padding:15px 25px;
-      border-radius:999px;
-      background:linear-gradient(90deg,#067bdc,#35dcff);
-      box-shadow:0 0 30px rgba(49,200,255,.35);
-      font-weight:800;
-      transition:.25s;
-    }
-
-    .btn-primary:hover{
-      transform:translateY(-2px);
-      box-shadow:0 0 42px rgba(49,200,255,.50);
-    }
-
-    .btn-secondary{
-      display:inline-flex;
-      gap:11px;
-      align-items:center;
-      padding:14px 20px;
-      border:1px solid rgba(86,203,255,.33);
-      border-radius:999px;
-      background:rgba(2,12,29,.42);
-      backdrop-filter:blur(10px);
-      color:#e8f7ff;
-      transition:.25s;
-    }
-
-    .btn-secondary:hover{
-      background:rgba(33,151,255,.12);
-    }
-
-    .play{
-      width:30px;
-      height:30px;
-      display:grid;
-      place-items:center;
-      border-radius:50%;
-      border:1px solid var(--blue);
-      color:var(--blue);
-      font-size:.8rem;
-    }
-
-    /* ===== SERVICES ===== */
-    .services{
-      position:absolute;
-      left:50%;
-      bottom:22px;
-      transform:translateX(-50%);
-      width:min(1440px,92%);
-      display:grid;
-      grid-template-columns:repeat(5,1fr);
-      gap:12px;
-      z-index:4;
-    }
-
-    .service{
-      min-height:118px;
-      padding:20px;
-      border-radius:17px;
-      border:1px solid var(--line);
-      background:linear-gradient(180deg,rgba(6,25,54,.82),rgba(2,13,31,.88));
-      backdrop-filter:blur(12px);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
-      transition:.25s;
-    }
-
-    .service:hover{
-      transform:translateY(-5px);
-      border-color:rgba(68,211,255,.55);
+    .lang, .login{
+      border:1px solid rgba(88,220,255,.28);
+      background:rgba(2,8,23,.14);
+      backdrop-filter:blur(7px);
+      color:#f4fbff;
       box-shadow:var(--shadow);
     }
 
-    .service-icon{
-      width:44px;
-      height:44px;
+    .lang{
+      border-radius:16px;
+      padding:10px 13px;
+    }
+
+    .login{
+      padding:12px 20px;
+      border-radius:999px;
+      transition:.22s;
+    }
+
+    .login:hover{
+      background:rgba(23,151,255,.18);
+      border-color:rgba(88,220,255,.48);
+    }
+
+    .hero-stage{
+      position:relative;
+      z-index:3;
+      min-height:calc(100vh - 88px);
+      display:flex;
+      align-items:flex-end;
+      justify-content:center;
+      padding:0 4% 28px;
+    }
+
+    .floating-note{
+      position:absolute;
+      top:32px;
+      left:4%;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(88,220,255,.20);
+      background:rgba(4,17,40,.14);
+      backdrop-filter:blur(8px);
+      color:#eaf8ff;
+      font-size:.90rem;
+      letter-spacing:.04em;
+      box-shadow:0 0 18px rgba(13,128,255,.10);
+      opacity:.90;
+    }
+
+    /* floating service dock */
+    .dock-wrap{
+      width:min(1200px,100%);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+      margin-bottom:8px;
+    }
+
+    .service-display{
+      min-height:74px;
+      max-width:860px;
+      width:min(90vw,860px);
+      padding:16px 18px;
+      border-radius:22px;
+      border:1px solid rgba(88,220,255,.24);
+      background:linear-gradient(180deg, rgba(4,16,40,.16), rgba(4,16,40,.26));
+      backdrop-filter:blur(10px);
+      box-shadow:0 0 28px rgba(8,115,255,.13);
+      display:flex;
+      align-items:center;
+      gap:14px;
+      opacity:0;
+      transform:translateY(10px);
+      pointer-events:none;
+      transition:.24s ease;
+    }
+
+    .service-display.show{
+      opacity:1;
+      transform:translateY(0);
+      pointer-events:auto;
+    }
+
+    .display-icon{
+      width:46px;
+      height:46px;
+      border-radius:14px;
       display:grid;
       place-items:center;
-      border-radius:11px;
-      background:rgba(33,151,255,.08);
-      border:1px solid rgba(58,199,255,.28);
+      background:rgba(38,171,255,.12);
+      border:1px solid rgba(88,220,255,.28);
       color:var(--cyan);
-      font-size:1.35rem;
-      margin-bottom:12px;
+      font-size:1.25rem;
+      flex:0 0 auto;
     }
 
-    .service h3{
-      font-size:.98rem;
-      margin-bottom:6px;
+    .display-copy strong{
+      display:block;
+      font-size:1rem;
+      margin-bottom:3px;
+      color:#ffffff;
     }
 
-    .service p{
+    .display-copy p{
       color:var(--muted);
-      font-size:.85rem;
-      line-height:1.45;
+      line-height:1.5;
+      font-size:.95rem;
     }
 
-    /* ===== SECTION ===== */
-    .section{
-      padding:100px 4%;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(0,125,255,.08), transparent 30%),
-        var(--bg);
+    .service-dock{
+      width:min(1100px,100%);
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
     }
 
-    .section-inner{
-      width:min(1200px,100%);
-      margin:auto;
+    .service-pill{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-height:54px;
+      padding:11px 16px;
+      border-radius:999px;
+      border:1px solid rgba(88,220,255,.24);
+      background:linear-gradient(180deg, rgba(4,16,40,.16), rgba(4,16,40,.24));
+      backdrop-filter:blur(10px);
+      color:#eff9ff;
+      cursor:pointer;
+      box-shadow:0 0 20px rgba(8,115,255,.10);
+      transition:.22s ease;
+    }
+
+    .service-pill:hover,
+    .service-pill.active{
+      transform:translateY(-2px);
+      border-color:rgba(88,220,255,.54);
+      background:linear-gradient(180deg, rgba(4,16,40,.24), rgba(4,16,40,.34));
+      box-shadow:0 0 26px rgba(8,115,255,.16);
+    }
+
+    .service-pill .icon{
+      width:30px;
+      height:30px;
+      border-radius:10px;
+      display:grid;
+      place-items:center;
+      background:rgba(38,171,255,.10);
+      color:var(--cyan);
+      font-size:1rem;
+      flex:0 0 auto;
+    }
+
+    .service-pill .label{
+      font-size:.94rem;
+      white-space:nowrap;
+    }
+
+    .service-tip{
+      color:#d2e5f1;
+      font-size:.88rem;
       text-align:center;
+      text-shadow:0 0 12px rgba(0,0,0,.25);
+      opacity:.92;
     }
 
-    .section h2{
-      font-size:clamp(2rem,4vw,3.4rem);
-      margin-bottom:18px;
-    }
-
-    .section p{
-      max-width:760px;
-      margin:0 auto;
-      color:var(--muted);
-      line-height:1.8;
-    }
-
-    /* ===== SAKSI FLOATING CHAT ===== */
+    /* SAKSI launcher and chat */
     .saksi-launcher{
       position:fixed;
       right:24px;
       bottom:24px;
-      z-index:20;
+      z-index:30;
       display:flex;
       align-items:center;
       gap:12px;
-      cursor:pointer;
       border:none;
-      color:#fff;
-      background:rgba(5,20,44,.90);
-      border:1px solid rgba(68,211,255,.42);
-      padding:12px 16px 12px 12px;
       border-radius:999px;
-      backdrop-filter:blur(14px);
-      box-shadow:0 0 28px rgba(29,173,255,.22);
+      padding:10px 16px 10px 10px;
+      cursor:pointer;
+      color:white;
+      background:linear-gradient(180deg, rgba(4,17,40,.82), rgba(4,17,40,.92));
+      border:1px solid rgba(88,220,255,.34);
+      backdrop-filter:blur(12px);
+      box-shadow:0 0 28px rgba(18,153,255,.16);
     }
 
     .orb{
-      width:46px;
-      height:46px;
+      width:44px;
+      height:44px;
       border-radius:50%;
       display:grid;
       place-items:center;
-      font-weight:900;
-      color:#06101f;
-      background:radial-gradient(circle at 35% 30%,#d9fbff,#39dfff 38%,#1376ff 68%,#092864);
-      box-shadow:0 0 25px rgba(75,222,255,.75);
+      font-weight:800;
+      color:#06111f;
+      background:radial-gradient(circle at 30% 30%, #f0ffff, #56eaff 35%, #1d9eff 70%, #092865);
+      box-shadow:0 0 26px rgba(75,222,255,.75);
     }
 
     .saksi-launcher strong{
       display:block;
+      color:#73ecff;
       text-align:left;
-      color:#72e8ff;
+      font-size:.98rem;
     }
 
     .saksi-launcher small{
-      color:#b8cbda;
+      display:block;
+      text-align:left;
+      color:#b7d0e2;
+      font-size:.89rem;
+    }
+
+    .saksi-hologram{
+      position:fixed;
+      right:2vw;
+      bottom:0;
+      width:min(42vw,620px);
+      max-height:88vh;
+      object-fit:contain;
+      object-position:bottom right;
+      z-index:28;
+      opacity:0;
+      pointer-events:none;
+      transform:translateY(80px) scale(.88);
+      filter:
+        drop-shadow(0 0 18px rgba(55,217,255,.75))
+        drop-shadow(0 0 50px rgba(0,116,255,.38));
+      transition:opacity .45s ease, transform .55s cubic-bezier(.2,.9,.2,1);
+    }
+
+    .saksi-hologram.show{
+      opacity:1;
+      transform:translateY(0) scale(1);
+      animation:holoFloat 3.6s ease-in-out infinite alternate;
+    }
+
+    .saksi-beam{
+      position:fixed;
+      right:10vw;
+      bottom:12px;
+      width:min(28vw,420px);
+      height:70px;
+      z-index:27;
+      border-radius:50%;
+      background:
+        radial-gradient(ellipse at center,
+          rgba(102,237,255,.50) 0%,
+          rgba(30,171,255,.22) 36%,
+          rgba(0,91,255,.05) 62%,
+          transparent 74%);
+      filter:blur(5px);
+      opacity:0;
+      pointer-events:none;
+      transform:scale(.55);
+      transition:.45s ease;
+    }
+
+    .saksi-beam.show{
+      opacity:1;
+      transform:scale(1);
+      animation:beamPulse 1.8s ease-in-out infinite alternate;
     }
 
     .chatbox{
       position:fixed;
-      right:clamp(95px, 16vw, 210px);
-      bottom:22px;
-      width:min(300px,calc(100vw - 34px));
-      background:linear-gradient(180deg, rgba(2,12,30,.08), rgba(2,12,30,.22));
+      right:clamp(86px, 14vw, 180px);
+      bottom:24px;
+      width:min(300px, calc(100vw - 32px));
+      background:linear-gradient(180deg, rgba(2,12,30,.05), rgba(2,12,30,.18));
       border:1px solid rgba(67,211,255,.28);
       border-radius:22px;
-      box-shadow:0 0 22px rgba(0,130,255,.10);
+      box-shadow:0 0 22px rgba(0,130,255,.09);
       backdrop-filter:blur(8px);
       overflow:hidden;
       transform:translateY(15px) scale(.98);
       opacity:0;
       pointer-events:none;
       transition:.25s;
-      z-index:20;
+      z-index:29;
     }
 
     .chatbox.open{
@@ -445,6 +415,7 @@
     .chat-head strong{
       color:#79e9ff;
       letter-spacing:.08em;
+      font-size:.90rem;
     }
 
     .close{
@@ -468,6 +439,7 @@
       border-radius:14px 14px 14px 4px;
       color:#eefbff;
       line-height:1.45;
+      font-size:.95rem;
     }
 
     .chat-input{
@@ -497,61 +469,6 @@
       font-size:1.1rem;
     }
 
-
-    /* ===== SAKSI HOLOGRAM ===== */
-    .saksi-hologram{
-      position:fixed;
-      right:2.5vw;
-      bottom:0;
-      width:min(43vw,650px);
-      max-height:88vh;
-      object-fit:contain;
-      object-position:bottom right;
-      z-index:21;
-      opacity:0;
-      pointer-events:none;
-      transform:translateY(80px) scale(.88);
-      filter:
-        drop-shadow(0 0 18px rgba(55,217,255,.75))
-        drop-shadow(0 0 50px rgba(0,116,255,.38));
-      transition:
-        opacity .45s ease,
-        transform .55s cubic-bezier(.2,.9,.2,1);
-    }
-
-    .saksi-hologram.show{
-      opacity:1;
-      transform:translateY(0) scale(1);
-      animation:holoFloat 3.6s ease-in-out infinite alternate;
-    }
-
-    .saksi-beam{
-      position:fixed;
-      right:10vw;
-      bottom:12px;
-      width:min(28vw,420px);
-      height:70px;
-      z-index:19;
-      border-radius:50%;
-      background:
-        radial-gradient(ellipse at center,
-          rgba(102,237,255,.50) 0%,
-          rgba(30,171,255,.22) 36%,
-          rgba(0,91,255,.05) 62%,
-          transparent 74%);
-      filter:blur(5px);
-      opacity:0;
-      pointer-events:none;
-      transform:scale(.55);
-      transition:.45s ease;
-    }
-
-    .saksi-beam.show{
-      opacity:1;
-      transform:scale(1);
-      animation:beamPulse 1.8s ease-in-out infinite alternate;
-    }
-
     @keyframes holoFloat{
       from{ transform:translateY(0) scale(1); }
       to{ transform:translateY(-10px) scale(1.008); }
@@ -562,119 +479,77 @@
       to{ filter:blur(9px); opacity:1; }
     }
 
-    @media(max-width:700px){
-      .saksi-hologram{
-        right:-14vw;
-        width:88vw;
-        max-height:72vh;
-        opacity:0;
-      }
-      .saksi-hologram.show{
-        opacity:.95;
-      }
-      .saksi-beam{
-        right:5vw;
-        width:70vw;
-      }
-    }
-
-    /* ===== MOBILE ===== */
-    @media(max-width:1050px){
-      .menu{
-        display:none;
-      }
-
-      .copy{
-        width:min(720px,78vw);
-      }
-
-      .services{
-        grid-template-columns:repeat(2,1fr);
-        position:relative;
-        left:auto;
-        bottom:auto;
-        transform:none;
-        margin:0 auto 28px;
-      }
-
-      .hero{
-        min-height:auto;
-      }
-
-      .hero-content{
-        min-height:780px;
-        align-items:center;
-        padding-bottom:70px;
+    @media(max-width:1080px){
+      .menu{ display:none; }
+      .nav{ height:76px; }
+      .hero-stage{ min-height:calc(100vh - 76px); }
+      .service-display{
+        width:min(92vw,760px);
       }
     }
 
     @media(max-width:700px){
       .hero{
-        background-position:62% center;
+        background:
+          linear-gradient(180deg, rgba(2,8,23,.10) 0%, rgba(2,8,23,.06) 18%, rgba(2,8,23,.18) 62%, rgba(2,8,23,.52) 100%),
+          url("saksi_l_assistante_ia_d_alger.png") center center / cover no-repeat;
       }
 
-      .nav{
-        height:72px;
+      .brand{ font-size:1.55rem; }
+      .lang{ display:none; }
+      .login{ padding:10px 15px; font-size:.9rem; }
+
+      .hero-stage{
+        padding:0 12px 108px;
       }
 
-      .brand{
-        font-size:1.55rem;
+      .floating-note{
+        top:16px;
+        left:12px;
+        font-size:.78rem;
+        padding:8px 12px;
       }
 
-      .lang{
-        display:none;
+      .dock-wrap{
+        gap:10px;
       }
 
-      .login{
-        padding:9px 14px;
+      .service-display{
+        min-height:88px;
+        width:100%;
+        padding:14px;
+        border-radius:18px;
+      }
+
+      .display-copy p{
         font-size:.88rem;
       }
 
-      .hero-content{
-        min-height:720px;
-        align-items:flex-end;
-        padding-bottom:56px;
-      }
-
-      .copy{
+      .service-dock{
+        justify-content:flex-start;
+        flex-wrap:nowrap;
+        overflow-x:auto;
+        padding:4px 2px 4px 2px;
         width:100%;
-        padding:22px;
-        border-radius:22px;
-        background:linear-gradient(180deg,rgba(2,10,25,.52),rgba(2,10,25,.88));
-        backdrop-filter:blur(8px);
+        scrollbar-width:none;
       }
 
-      .eyebrow{
-        font-size:.67rem;
+      .service-dock::-webkit-scrollbar{
+        display:none;
       }
 
-      h1{
-        font-size:clamp(3.3rem,17vw,5rem);
-        letter-spacing:-3px;
+      .service-pill{
+        flex:0 0 auto;
+        min-height:48px;
+        padding:9px 13px;
       }
 
-      .subtitle{
-        font-size:1.7rem;
+      .service-pill .label{
+        font-size:.85rem;
       }
 
-      .lead{
-        font-size:.97rem;
-      }
-
-      .services{
-        width:92%;
-        grid-template-columns:1fr;
-      }
-
-      .service{
-        min-height:auto;
-      }
-
-      .chatbox{
-        right:12px;
-        left:12px;
-        width:auto;
-        bottom:92px;
+      .service-tip{
+        font-size:.8rem;
       }
 
       .saksi-launcher span{
@@ -683,11 +558,33 @@
 
       .saksi-launcher{
         padding:8px;
+        right:12px;
+        bottom:12px;
+      }
+
+      .saksi-hologram{
+        right:-14vw;
+        width:88vw;
+        max-height:72vh;
+      }
+
+      .saksi-hologram.show{
+        opacity:.95;
+      }
+
+      .saksi-beam{
+        right:5vw;
+        width:70vw;
+      }
+
+      .chatbox{
+        right:10px;
+        bottom:84px;
+        width:min(90vw,300px);
       }
     }
   </style>
 </head>
-
 <body>
 
   <header class="hero" id="accueil">
@@ -708,66 +605,69 @@
       </div>
     </nav>
 
-        <div class="hero-buttons">
-          <a class="btn-primary" href="#services">Commencer →</a>
+    <div class="hero-stage">
+      <div class="floating-note">Plateforme IA • SAKSI • Expérience immersive</div>
 
-          <button class="btn-secondary" type="button" onclick="openSaksi()">
-            <span class="play">▶</span>
-            <span>
-              <strong>Découvrez SAKSI</strong><br>
-              <small>Votre assistante IA</small>
-            </span>
+      <div class="dock-wrap" id="services">
+        <div class="service-display" id="serviceDisplay">
+          <div class="display-icon" id="displayIcon">💬</div>
+          <div class="display-copy">
+            <strong id="displayTitle">Chat IA</strong>
+            <p id="displayText">Des réponses rapides, contextualisées et naturelles.</p>
+          </div>
+        </div>
+
+        <div class="service-dock">
+          <button class="service-pill active" type="button"
+                  data-icon="💬"
+                  data-title="Chat IA"
+                  data-text="Des réponses rapides, contextualisées et naturelles."
+                  onclick="selectService(this)">
+            <span class="icon">💬</span>
+            <span class="label">Chat IA</span>
+          </button>
+
+          <button class="service-pill" type="button"
+                  data-icon="✦"
+                  data-title="Création de contenu"
+                  data-text="Générez des textes, idées et visuels pour vos projets."
+                  onclick="selectService(this)">
+            <span class="icon">✦</span>
+            <span class="label">Création de contenu</span>
+          </button>
+
+          <button class="service-pill" type="button"
+                  data-icon="▥"
+                  data-title="Analyse de données"
+                  data-text="Transformez vos données en informations utiles et lisibles."
+                  onclick="selectService(this)">
+            <span class="icon">▥</span>
+            <span class="label">Analyse de données</span>
+          </button>
+
+          <button class="service-pill" type="button"
+                  data-icon="⚙"
+                  data-title="Automatisation"
+                  data-text="Automatisez les tâches répétitives et gagnez du temps."
+                  onclick="selectService(this)">
+            <span class="icon">⚙</span>
+            <span class="label">Automatisation</span>
+          </button>
+
+          <button class="service-pill" type="button"
+                  data-icon="◇"
+                  data-title="Solutions sur mesure"
+                  data-text="Des solutions IA adaptées à votre activité et à vos objectifs."
+                  onclick="selectService(this)">
+            <span class="icon">◇</span>
+            <span class="label">Solutions sur mesure</span>
           </button>
         </div>
+
+        <div class="service-tip">Cliquez sur un bouton pour afficher le détail • SAKSI reste entièrement visible</div>
       </div>
-    </div>
-
-    <div class="services" id="services">
-      <article class="service">
-        <div class="service-icon">💬</div>
-        <h3>Chat IA</h3>
-        <p>Des réponses rapides, contextualisées et naturelles.</p>
-      </article>
-
-      <article class="service">
-        <div class="service-icon">✦</div>
-        <h3>Création de contenu</h3>
-        <p>Textes, idées, visuels et contenus adaptés à vos projets.</p>
-      </article>
-
-      <article class="service">
-        <div class="service-icon">▥</div>
-        <h3>Analyse de données</h3>
-        <p>Transformez vos informations en décisions utiles.</p>
-      </article>
-
-      <article class="service">
-        <div class="service-icon">⚙</div>
-        <h3>Automatisation</h3>
-        <p>Accélérez les tâches répétitives et gagnez du temps.</p>
-      </article>
-
-      <article class="service">
-        <div class="service-icon">◇</div>
-        <h3>Solutions sur mesure</h3>
-        <p>Des outils IA conçus autour de vos besoins.</p>
-      </article>
     </div>
   </header>
-
-  <main>
-    <section class="section" id="solutions">
-      <div class="section-inner">
-        <h2>L’IA, simplement.</h2>
-        <p>
-          Djazzair.com a vocation à réunir des services d’intelligence artificielle
-          dans une interface claire, moderne et accessible. SAKSI pourra ensuite
-          être reliée à un véritable moteur conversationnel.
-        </p>
-      </div>
-    </section>
-  </main>
-
 
   <!-- Hologramme SAKSI -->
   <div class="saksi-beam" id="saksiBeam"></div>
@@ -807,6 +707,27 @@
   </button>
 
   <script>
+    const display = document.getElementById("serviceDisplay");
+    const displayIcon = document.getElementById("displayIcon");
+    const displayTitle = document.getElementById("displayTitle");
+    const displayText = document.getElementById("displayText");
+    const pills = document.querySelectorAll(".service-pill");
+
+    function selectService(button){
+      pills.forEach(p => p.classList.remove("active"));
+      button.classList.add("active");
+
+      displayIcon.textContent = button.dataset.icon;
+      displayTitle.textContent = button.dataset.title;
+      displayText.textContent = button.dataset.text;
+      display.classList.add("show");
+    }
+
+    // show first panel by default
+    window.addEventListener("DOMContentLoaded", () => {
+      display.classList.add("show");
+    });
+
     const chatbox = document.getElementById("chatbox");
     const saksiHologram = document.getElementById("saksiHologram");
     const saksiBeam = document.getElementById("saksiBeam");
@@ -823,7 +744,7 @@
 
     function openSaksi(){
       showHologram();
-      setTimeout(() => chatbox.classList.add("open"), 380);
+      setTimeout(() => chatbox.classList.add("open"), 320);
     }
 
     function closeSaksi(){
@@ -850,12 +771,13 @@
       if(!message) return;
 
       const user = document.createElement("div");
-      user.style.margin = "14px 0 0 auto";
-      user.style.maxWidth = "86%";
+      user.style.margin = "12px 0 0 auto";
+      user.style.maxWidth = "90%";
       user.style.padding = "12px 14px";
       user.style.borderRadius = "14px 14px 4px 14px";
       user.style.background = "linear-gradient(135deg,#157fdc,#21c6e8)";
       user.style.color = "#fff";
+      user.style.fontSize = ".95rem";
       user.textContent = message;
 
       body.appendChild(user);
@@ -868,7 +790,7 @@
         reply.textContent = "SAKSI est prête. Nous connecterons ensuite cette interface à une véritable IA.";
         body.appendChild(reply);
         body.scrollTop = body.scrollHeight;
-      }, 500);
+      }, 450);
     }
   </script>
 
