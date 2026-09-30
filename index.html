@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#020817">
-  <meta name="description" content="Djazzair.com — plateforme IA avec SAKKSI, assistante intelligente.">
-  <title>Djazzair.com — SAKKSI</title>
+  <meta id="metaDescription" name="description" content="SAKKSI.com — AI designed for the Arab and Francophone world.">
+  <title>SAKKSI.com — AI Assistant</title>
 
   <style>
     :root{
@@ -66,6 +66,20 @@
       background:linear-gradient(180deg, rgba(2,8,23,.10), rgba(2,8,23,0));
     }
 
+    .brand{
+      font-size:2rem;
+      font-weight:800;
+      letter-spacing:-1px;
+      white-space:nowrap;
+      text-shadow:0 0 18px rgba(0,0,0,.25);
+    }
+    .brand span{
+      background:linear-gradient(90deg,#5fe6ff,#14a4ff);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
     .menu{
       display:flex;
       align-items:center;
@@ -97,7 +111,40 @@
     .nav-actions{
       display:flex;
       align-items:center;
-      gap:14px;
+      gap:12px;
+    }
+
+    .language-switch{
+      display:flex;
+      align-items:center;
+      gap:4px;
+      padding:4px;
+      border:1px solid rgba(88,220,255,.28);
+      border-radius:999px;
+      background:rgba(2,8,23,.18);
+      backdrop-filter:blur(8px);
+      box-shadow:var(--shadow);
+    }
+
+    .language-switch button{
+      border:0;
+      color:#d8e9f7;
+      background:transparent;
+      cursor:pointer;
+      min-width:38px;
+      height:32px;
+      padding:0 9px;
+      border-radius:999px;
+      transition:.2s;
+      font-size:.83rem;
+      font-weight:700;
+    }
+
+    .language-switch button:hover,
+    .language-switch button.active{
+      color:#fff;
+      background:rgba(38,171,255,.18);
+      box-shadow:inset 0 0 0 1px rgba(88,220,255,.24);
     }
 
     .lang, .login{
@@ -455,6 +502,13 @@
       font-size:1.1rem;
     }
 
+
+    [dir="rtl"] .floating-note{ left:auto; right:4%; }
+    [dir="rtl"] .display-copy,
+    [dir="rtl"] .saksi-launcher strong,
+    [dir="rtl"] .saksi-launcher small{ text-align:right; }
+    [dir="rtl"] .bubble{ text-align:right; border-radius:14px 14px 4px 14px; }
+
     @keyframes holoFloat{
       from{ transform:translateY(0) scale(1); }
       to{ transform:translateY(-10px) scale(1.008); }
@@ -465,7 +519,12 @@
       to{ filter:blur(9px); opacity:1; }
     }
 
-    @media(max-width:1080px){
+    @media (min-width:701px) and (max-width:1080px){
+      .hero{
+        background:
+          linear-gradient(180deg, rgba(2,8,23,.10) 0%, rgba(2,8,23,.06) 20%, rgba(2,8,23,.16) 62%, rgba(2,8,23,.48) 100%),
+          url("vitrine-tablette.png") center center / cover no-repeat;
+      }
       .menu{ display:none; }
       .nav{ height:76px; }
       .hero-stage{ min-height:calc(100vh - 76px); }
@@ -473,19 +532,7 @@
         width:min(92vw,760px);
       }
     }
-@media (min-width:701px) and (max-width:1080px){
-  .hero{
-    background:
-      linear-gradient(
-        180deg,
-        rgba(2,8,23,.10) 0%,
-        rgba(2,8,23,.06) 20%,
-        rgba(2,8,23,.16) 62%,
-        rgba(2,8,23,.48) 100%
-      ),
-      url("vitrine-tablette.png") center center / cover no-repeat;
-  }
-}
+
     @media(max-width:700px){
       .hero{
         background:
@@ -494,7 +541,8 @@
       }
 
       .brand{ font-size:1.55rem; }
-      .lang{ display:none; }
+      .language-switch{ gap:2px; padding:3px; }
+      .language-switch button{ min-width:34px; height:30px; padding:0 7px; font-size:.75rem; }
       .login{ padding:10px 15px; font-size:.9rem; }
 
       .hero-stage{
@@ -585,90 +633,68 @@
 </head>
 <body>
 
-  <header class="hero" id="accueil">
+  <header class="hero" id="home">
     <nav class="nav">
-    
+      <a class="brand" href="#home">SAKKSI<span>.com</span></a>
 
       <div class="menu">
-        <a href="#accueil">Accueil</a>
-        <a href="#services">Produits</a>
-        <a href="#solutions">Solutions</a>
-        <a href="#ressources">Ressources</a>
+        <a href="#home" data-i18n="navHome">Home</a>
+        <a href="#services" data-i18n="navProducts">Products</a>
+        <a href="#solutions" data-i18n="navSolutions">Solutions</a>
+        <a href="#resources" data-i18n="navResources">Resources</a>
+        <a href="#investors" data-i18n="navInvestors">Investors</a>
       </div>
 
       <div class="nav-actions">
-        <button class="lang" type="button">◎ DZ⌄</button>
-        <a class="login" href="#connexion">Se connecter</a>
+        <div class="language-switch" aria-label="Language selector">
+          <button type="button" class="active" data-lang="en" onclick="setLanguage('en')">EN</button>
+          <button type="button" data-lang="ar" onclick="setLanguage('ar')">AR</button>
+          <button type="button" data-lang="fr" onclick="setLanguage('fr')">FR</button>
+        </div>
+        <a class="login" href="#contact" data-i18n="contact">Contact</a>
       </div>
     </nav>
 
     <div class="hero-stage">
-      <div class="floating-note">Plateforme IA • SAKKSI • Expérience immersive</div>
+      <div class="floating-note" data-i18n="floatingNote">AI Platform • SAKKSI • Immersive Experience</div>
 
       <div class="dock-wrap" id="services">
-        <div class="service-display" id="serviceDisplay">
+        <div class="service-display show" id="serviceDisplay">
           <div class="display-icon" id="displayIcon">💬</div>
           <div class="display-copy">
-            <strong id="displayTitle">Chat IA</strong>
-            <p id="displayText">Des réponses rapides, contextualisées et naturelles.</p>
+            <strong id="displayTitle">AI Chat</strong>
+            <p id="displayText">Fast, contextual and natural answers.</p>
           </div>
         </div>
 
         <div class="service-dock">
-          <button class="service-pill active" type="button"
-                  data-icon="💬"
-                  data-title="Chat IA"
-                  data-text="Des réponses rapides, contextualisées et naturelles."
-                  onclick="selectService(this)">
-            <span class="icon">💬</span>
-            <span class="label">Chat IA</span>
+          <button class="service-pill active" type="button" data-service="chat" onclick="selectService(this)">
+            <span class="icon">💬</span><span class="label" data-i18n="serviceChat">AI Chat</span>
           </button>
-
-          <button class="service-pill" type="button"
-                  data-icon="✦"
-                  data-title="Création de contenu"
-                  data-text="Générez des textes, idées et visuels pour vos projets."
-                  onclick="selectService(this)">
-            <span class="icon">✦</span>
-            <span class="label">Création de contenu</span>
+          <button class="service-pill" type="button" data-service="content" onclick="selectService(this)">
+            <span class="icon">✦</span><span class="label" data-i18n="serviceContent">Content Creation</span>
           </button>
-
-          <button class="service-pill" type="button"
-                  data-icon="▥"
-                  data-title="Analyse de données"
-                  data-text="Transformez vos données en informations utiles et lisibles."
-                  onclick="selectService(this)">
-            <span class="icon">▥</span>
-            <span class="label">Analyse de données</span>
+          <button class="service-pill" type="button" data-service="data" onclick="selectService(this)">
+            <span class="icon">▥</span><span class="label" data-i18n="serviceData">Data Analysis</span>
           </button>
-
-          <button class="service-pill" type="button"
-                  data-icon="⚙"
-                  data-title="Automatisation"
-                  data-text="Automatisez les tâches répétitives et gagnez du temps."
-                  onclick="selectService(this)">
-            <span class="icon">⚙</span>
-            <span class="label">Automatisation</span>
+          <button class="service-pill" type="button" data-service="automation" onclick="selectService(this)">
+            <span class="icon">⚙</span><span class="label" data-i18n="serviceAutomation">Automation</span>
           </button>
-
-          <button class="service-pill" type="button"
-                  data-icon="◇"
-                  data-title="Solutions sur mesure"
-                  data-text="Des solutions IA adaptées à votre activité et à vos objectifs."
-                  onclick="selectService(this)">
-            <span class="icon">◇</span>
-            <span class="label">Solutions sur mesure</span>
+          <button class="service-pill" type="button" data-service="custom" onclick="selectService(this)">
+            <span class="icon">◇</span><span class="label" data-i18n="serviceCustom">Custom Solutions</span>
           </button>
         </div>
+
+        <div class="service-tip" data-i18n="serviceTip">Select a capability to discover more • SAKKSI stays fully visible</div>
       </div>
     </div>
   </header>
 
-  <!-- Hologramme SAKKSI -->
+  <!-- Hologramme SAKSI -->
   <div class="saksi-beam" id="saksiBeam"></div>
   <img
     src="saksi-hologram.png"
-    alt="SAKKSI, assistante IA holographique"
+    alt="SAKKSI holographic AI assistant"
     class="saksi-hologram"
     id="saksiHologram"
   >
@@ -676,93 +702,145 @@
   <!-- Chat SAKSI -->
   <div class="chatbox" id="chatbox">
     <div class="chat-head">
-      <strong>SAKKSI • ASSISTANTE IA</strong>
+      <strong data-i18n="chatHeader">SAKKSI • AI ASSISTANT</strong>
       <button class="close" type="button" onclick="closeSaksi()">×</button>
     </div>
 
     <div class="chat-body" id="chatBody">
-      <div class="bubble">
-        Bonjour, je suis <strong>SAKKSI</strong>.<br>
-        Comment puis-je vous aider aujourd’hui ?
-      </div>
+      <div class="bubble" id="welcomeBubble">Hello, I am <strong>SAKKSI</strong>.<br>How can I help you today?</div>
     </div>
 
     <form class="chat-input" onsubmit="demoMessage(event)">
-      <input id="chatInput" type="text" placeholder="Posez votre question…" autocomplete="off">
+      <input id="chatInput" type="text" placeholder="Ask your question…" autocomplete="off">
       <button type="submit">➤</button>
     </form>
   </div>
 
-  <button class="saksi-launcher" type="button" onclick="toggleSaksi()" aria-label="Ouvrir SAKSI">
+  <button class="saksi-launcher" type="button" onclick="toggleSaksi()" aria-label="Open SAKKSI">
     <div class="orb">S</div>
     <span>
       <strong>SAKKSI</strong>
-      <small>Votre assistante IA</small>
+      <small data-i18n="assistantLabel">Your AI assistant</small>
     </span>
   </button>
 
   <script>
+    const translations = {
+      en: {
+        pageTitle: "SAKKSI.com — AI Assistant",
+        metaDescription: "SAKKSI.com — AI designed for the Arab and Francophone world.",
+        navHome: "Home", navProducts: "Products", navSolutions: "Solutions", navResources: "Resources", navInvestors: "Investors", contact: "Contact",
+        floatingNote: "AI Platform • SAKKSI • Immersive Experience",
+        serviceChat: "AI Chat", serviceContent: "Content Creation", serviceData: "Data Analysis", serviceAutomation: "Automation", serviceCustom: "Custom Solutions",
+        serviceTip: "Select a capability to discover more • SAKKSI stays fully visible",
+        chatHeader: "SAKKSI • AI ASSISTANT", assistantLabel: "Your AI assistant", chatPlaceholder: "Ask your question…",
+        welcome: 'Hello, I am <strong>SAKKSI</strong>.<br>How can I help you today?',
+        demoReply: "SAKKSI is ready. This interface can now be connected to a real AI engine.",
+        services: {
+          chat:{icon:"💬",title:"AI Chat",text:"Fast, contextual and natural answers."},
+          content:{icon:"✦",title:"Content Creation",text:"Generate text, ideas and visual concepts for your projects."},
+          data:{icon:"▥",title:"Data Analysis",text:"Turn your data into useful, understandable insights."},
+          automation:{icon:"⚙",title:"Automation",text:"Automate repetitive work and save valuable time."},
+          custom:{icon:"◇",title:"Custom Solutions",text:"AI solutions adapted to your organization and objectives."}
+        }
+      },
+      ar: {
+        pageTitle: "SAKKSI.com — مساعد الذكاء الاصطناعي",
+        metaDescription: "SAKKSI.com — ذكاء اصطناعي صُمم للعالم العربي والناطق بالفرنسية.",
+        navHome: "الرئيسية", navProducts: "المنتجات", navSolutions: "الحلول", navResources: "الموارد", navInvestors: "المستثمرون", contact: "تواصل معنا",
+        floatingNote: "منصة ذكاء اصطناعي • SAKKSI • تجربة تفاعلية",
+        serviceChat: "محادثة ذكية", serviceContent: "إنشاء المحتوى", serviceData: "تحليل البيانات", serviceAutomation: "الأتمتة", serviceCustom: "حلول مخصصة",
+        serviceTip: "اختر إحدى الإمكانات لمعرفة المزيد • تبقى SAKKSI ظاهرة بالكامل",
+        chatHeader: "SAKKSI • مساعد الذكاء الاصطناعي", assistantLabel: "مساعدك الذكي", chatPlaceholder: "اكتب سؤالك…",
+        welcome: 'مرحباً، أنا <strong>SAKKSI</strong>.<br>كيف يمكنني مساعدتك اليوم؟',
+        demoReply: "SAKKSI جاهزة. يمكن الآن ربط هذه الواجهة بمحرك ذكاء اصطناعي حقيقي.",
+        services: {
+          chat:{icon:"💬",title:"محادثة ذكية",text:"إجابات سريعة وطبيعية تراعي سياق المحادثة."},
+          content:{icon:"✦",title:"إنشاء المحتوى",text:"أنشئ النصوص والأفكار والمفاهيم البصرية لمشاريعك."},
+          data:{icon:"▥",title:"تحليل البيانات",text:"حوّل بياناتك إلى معلومات واضحة وقابلة للاستخدام."},
+          automation:{icon:"⚙",title:"الأتمتة",text:"أتمت المهام المتكررة ووفر الوقت."},
+          custom:{icon:"◇",title:"حلول مخصصة",text:"حلول ذكاء اصطناعي مصممة وفق احتياجاتك وأهدافك."}
+        }
+      },
+      fr: {
+        pageTitle: "SAKKSI.com — Assistante IA",
+        metaDescription: "SAKKSI.com — une IA pensée pour le monde arabe et francophone.",
+        navHome: "Accueil", navProducts: "Produits", navSolutions: "Solutions", navResources: "Ressources", navInvestors: "Investisseurs", contact: "Contact",
+        floatingNote: "Plateforme IA • SAKKSI • Expérience immersive",
+        serviceChat: "Chat IA", serviceContent: "Création de contenu", serviceData: "Analyse de données", serviceAutomation: "Automatisation", serviceCustom: "Solutions sur mesure",
+        serviceTip: "Choisissez une fonctionnalité pour en savoir plus • SAKKSI reste entièrement visible",
+        chatHeader: "SAKKSI • ASSISTANTE IA", assistantLabel: "Votre assistante IA", chatPlaceholder: "Posez votre question…",
+        welcome: 'Bonjour, je suis <strong>SAKKSI</strong>.<br>Comment puis-je vous aider aujourd’hui ?',
+        demoReply: "SAKKSI est prête. Cette interface peut maintenant être reliée à un véritable moteur d’IA.",
+        services: {
+          chat:{icon:"💬",title:"Chat IA",text:"Des réponses rapides, contextualisées et naturelles."},
+          content:{icon:"✦",title:"Création de contenu",text:"Générez des textes, des idées et des concepts visuels pour vos projets."},
+          data:{icon:"▥",title:"Analyse de données",text:"Transformez vos données en informations utiles et compréhensibles."},
+          automation:{icon:"⚙",title:"Automatisation",text:"Automatisez les tâches répétitives et gagnez du temps."},
+          custom:{icon:"◇",title:"Solutions sur mesure",text:"Des solutions IA adaptées à votre activité et à vos objectifs."}
+        }
+      }
+    };
+
+    let currentLanguage = "en";
+    let activeService = "chat";
+
     const display = document.getElementById("serviceDisplay");
     const displayIcon = document.getElementById("displayIcon");
     const displayTitle = document.getElementById("displayTitle");
     const displayText = document.getElementById("displayText");
     const pills = document.querySelectorAll(".service-pill");
+    const chatbox = document.getElementById("chatbox");
+    const saksiHologram = document.getElementById("saksiHologram");
+    const saksiBeam = document.getElementById("saksiBeam");
+    const welcomeBubble = document.getElementById("welcomeBubble");
+    const chatInput = document.getElementById("chatInput");
+
+    function updateService(){
+      const service = translations[currentLanguage].services[activeService];
+      displayIcon.textContent = service.icon;
+      displayTitle.textContent = service.title;
+      displayText.textContent = service.text;
+      display.classList.add("show");
+    }
 
     function selectService(button){
       pills.forEach(p => p.classList.remove("active"));
       button.classList.add("active");
-
-      displayIcon.textContent = button.dataset.icon;
-      displayTitle.textContent = button.dataset.title;
-      displayText.textContent = button.dataset.text;
-      display.classList.add("show");
+      activeService = button.dataset.service;
+      updateService();
     }
 
-    // show first panel by default
-    window.addEventListener("DOMContentLoaded", () => {
-      display.classList.add("show");
-    });
+    function setLanguage(lang){
+      if(!translations[lang]) return;
+      currentLanguage = lang;
+      localStorage.setItem("sakksi-language", lang);
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+      document.title = translations[lang].pageTitle;
+      document.getElementById("metaDescription").setAttribute("content", translations[lang].metaDescription);
 
-    const chatbox = document.getElementById("chatbox");
-    const saksiHologram = document.getElementById("saksiHologram");
-    const saksiBeam = document.getElementById("saksiBeam");
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.dataset.i18n;
+        if(translations[lang][key] !== undefined) el.textContent = translations[lang][key];
+      });
 
-    function showHologram(){
-      saksiHologram.classList.add("show");
-      saksiBeam.classList.add("show");
+      document.querySelectorAll(".language-switch button").forEach(btn => btn.classList.toggle("active", btn.dataset.lang === lang));
+      welcomeBubble.innerHTML = translations[lang].welcome;
+      chatInput.placeholder = translations[lang].chatPlaceholder;
+      updateService();
     }
 
-    function hideHologram(){
-      saksiHologram.classList.remove("show");
-      saksiBeam.classList.remove("show");
-    }
-
-    function openSaksi(){
-      showHologram();
-      setTimeout(() => chatbox.classList.add("open"), 320);
-    }
-
-    function closeSaksi(){
-      chatbox.classList.remove("open");
-      hideHologram();
-    }
-
-    function toggleSaksi(){
-      const willOpen = !chatbox.classList.contains("open");
-      if(willOpen){
-        openSaksi();
-      }else{
-        closeSaksi();
-      }
-    }
+    function showHologram(){ saksiHologram.classList.add("show"); saksiBeam.classList.add("show"); }
+    function hideHologram(){ saksiHologram.classList.remove("show"); saksiBeam.classList.remove("show"); }
+    function openSaksi(){ showHologram(); setTimeout(() => chatbox.classList.add("open"), 320); }
+    function closeSaksi(){ chatbox.classList.remove("open"); hideHologram(); }
+    function toggleSaksi(){ chatbox.classList.contains("open") ? closeSaksi() : openSaksi(); }
 
     function demoMessage(event){
       event.preventDefault();
-
-      const input = document.getElementById("chatInput");
       const body = document.getElementById("chatBody");
-      const message = input.value.trim();
-
+      const message = chatInput.value.trim();
       if(!message) return;
 
       const user = document.createElement("div");
@@ -773,20 +851,26 @@
       user.style.background = "linear-gradient(135deg,#157fdc,#21c6e8)";
       user.style.color = "#fff";
       user.style.fontSize = ".95rem";
+      user.style.direction = currentLanguage === "ar" ? "rtl" : "ltr";
       user.textContent = message;
-
       body.appendChild(user);
-      input.value = "";
+      chatInput.value = "";
 
       setTimeout(() => {
         const reply = document.createElement("div");
         reply.className = "bubble";
         reply.style.marginTop = "12px";
-        reply.textContent = "SAKKSI est prête. Nous connecterons ensuite cette interface à une véritable IA.";
+        reply.style.direction = currentLanguage === "ar" ? "rtl" : "ltr";
+        reply.textContent = translations[currentLanguage].demoReply;
         body.appendChild(reply);
         body.scrollTop = body.scrollHeight;
       }, 450);
     }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const saved = localStorage.getItem("sakksi-language");
+      setLanguage(saved && translations[saved] ? saved : "en");
+    });
   </script>
 
 </body>
