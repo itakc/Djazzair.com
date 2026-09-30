@@ -519,45 +519,114 @@
       to{ filter:blur(9px); opacity:1; }
     }
 
+    
+    /* Bouton hamburger : caché sur grand écran */
+    .mobile-menu-btn{
+      display:none;
+      width:44px;
+      height:44px;
+      border-radius:12px;
+      border:1px solid rgba(88,220,255,.28);
+      background:rgba(2,8,23,.22);
+      color:white;
+      font-size:1.45rem;
+      cursor:pointer;
+      backdrop-filter:blur(8px);
+      align-items:center;
+      justify-content:center;
+    }
+
+    /* Menu mobile/tablette */
+    .mobile-menu{
+      display:none;
+      position:absolute;
+      top:76px;
+      right:4%;
+      z-index:50;
+      width:min(280px,88vw);
+      padding:14px;
+      border-radius:18px;
+      background:rgba(3,14,34,.88);
+      border:1px solid rgba(88,220,255,.25);
+      backdrop-filter:blur(18px);
+      box-shadow:0 15px 45px rgba(0,0,0,.35), 0 0 25px rgba(0,130,255,.12);
+    }
+
+    .mobile-menu.open{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .mobile-menu a{
+      padding:12px 14px;
+      border-radius:12px;
+      color:#edf9ff;
+      transition:.2s;
+    }
+
+    .mobile-menu a:hover{
+      background:rgba(38,171,255,.12);
+    }
+
+    .mobile-language-switch{
+      display:flex;
+      gap:8px;
+      margin-top:8px;
+      padding-top:12px;
+      border-top:1px solid rgba(255,255,255,.08);
+    }
+
+    .mobile-language-switch button{
+      flex:1;
+      padding:10px;
+      border-radius:10px;
+      border:1px solid rgba(88,220,255,.22);
+      background:rgba(38,171,255,.08);
+      color:white;
+      cursor:pointer;
+      transition:.2s;
+    }
+
+    .mobile-language-switch button:hover,
+    .mobile-language-switch button.active{
+      background:rgba(38,171,255,.20);
+      border-color:rgba(88,220,255,.45);
+    }
+
+    /* TABLETTE */
     @media (min-width:701px) and (max-width:1080px){
       .hero{
         background:
           linear-gradient(180deg, rgba(2,8,23,.10) 0%, rgba(2,8,23,.06) 20%, rgba(2,8,23,.16) 62%, rgba(2,8,23,.48) 100%),
           url("vitrine-tablette.png") center center / cover no-repeat;
       }
+
       .menu{ display:none; }
+      .mobile-menu-btn{ display:flex; }
       .nav{ height:76px; }
       .hero-stage{ min-height:calc(100vh - 76px); }
-      .service-display{
-        width:min(92vw,760px);
-      }
+      .service-display{ width:min(92vw,760px); }
     }
 
+    /* TELEPHONE */
     @media(max-width:700px){
       .hero{
         background:
           linear-gradient(180deg, rgba(2,8,23,.10) 0%, rgba(2,8,23,.06) 18%, rgba(2,8,23,.18) 62%, rgba(2,8,23,.52) 100%),
           url("vitrine-mobile.png") center center / cover no-repeat;
-        .mobile-menu-btn{
-  display:block;
-}
-
-.language-switch,
-.login{
-  display:none;
-}
-
-.menu{
-  display:none;
-}
       }
 
+      .mobile-menu-btn{ display:flex; }
+      .language-switch,
+      .login,
+      .menu{ display:none; }
+
+      .nav{ height:72px; }
       .brand{ font-size:1.55rem; }
-      .language-switch{ gap:2px; padding:3px; }
-      .language-switch button{ min-width:34px; height:30px; padding:0 7px; font-size:.75rem; }
-      .login{ padding:10px 15px; font-size:.9rem; }
 
       .hero-stage{
+        min-height:calc(100vh - 72px);
         padding:0 12px 108px;
       }
 
@@ -568,9 +637,12 @@
         padding:8px 12px;
       }
 
-      .dock-wrap{
-        gap:10px;
+      [dir="rtl"] .floating-note{
+        left:auto;
+        right:12px;
       }
+
+      .dock-wrap{ gap:10px; }
 
       .service-display{
         min-height:88px;
@@ -579,94 +651,18 @@
         border-radius:18px;
       }
 
-      .display-copy p{
-        font-size:.88rem;
-      }
-      .mobile-menu-btn{
-  display:none;
-  width:44px;
-  height:44px;
-  border-radius:12px;
-  border:1px solid rgba(88,220,255,.28);
-  background:rgba(2,8,23,.22);
-  color:white;
-  font-size:1.45rem;
-  cursor:pointer;
-  backdrop-filter:blur(8px);
-}
-
-.mobile-menu{
-  display:none;
-  position:absolute;
-  top:72px;
-  right:12px;
-  z-index:50;
-
-  width:min(280px,88vw);
-
-  padding:14px;
-
-  border-radius:18px;
-
-  background:rgba(3,14,34,.88);
-  border:1px solid rgba(88,220,255,.25);
-
-  backdrop-filter:blur(18px);
-
-  box-shadow:
-    0 15px 45px rgba(0,0,0,.35),
-    0 0 25px rgba(0,130,255,.12);
-}
-
-.mobile-menu.open{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-
-.mobile-menu a{
-  padding:12px 14px;
-  border-radius:12px;
-  color:#edf9ff;
-}
-
-.mobile-menu a:hover{
-  background:rgba(38,171,255,.12);
-}
-
-.mobile-language-switch{
-  display:flex;
-  gap:8px;
-  margin-top:8px;
-  padding-top:12px;
-  border-top:1px solid rgba(255,255,255,.08);
-}
-
-.mobile-language-switch button{
-  flex:1;
-  padding:10px;
-  border-radius:10px;
-
-  border:1px solid rgba(88,220,255,.22);
-
-  background:rgba(38,171,255,.08);
-  color:white;
-
-  cursor:pointer;
-}
+      .display-copy p{ font-size:.88rem; }
 
       .service-dock{
         justify-content:flex-start;
         flex-wrap:nowrap;
         overflow-x:auto;
-        padding:4px 2px 4px 2px;
+        padding:4px 2px;
         width:100%;
         scrollbar-width:none;
       }
 
-      .service-dock::-webkit-scrollbar{
-        display:none;
-      }
+      .service-dock::-webkit-scrollbar{ display:none; }
 
       .service-pill{
         flex:0 0 auto;
@@ -674,17 +670,9 @@
         padding:9px 13px;
       }
 
-      .service-pill .label{
-        font-size:.85rem;
-      }
-
-      .service-tip{
-        font-size:.8rem;
-      }
-
-      .saksi-launcher span{
-        display:none;
-      }
+      .service-pill .label{ font-size:.85rem; }
+      .service-tip{ font-size:.8rem; }
+      .saksi-launcher span{ display:none; }
 
       .saksi-launcher{
         padding:8px;
@@ -698,9 +686,7 @@
         max-height:72vh;
       }
 
-      .saksi-hologram.show{
-        opacity:.95;
-      }
+      .saksi-hologram.show{ opacity:.95; }
 
       .saksi-beam{
         right:5vw;
@@ -712,7 +698,18 @@
         bottom:84px;
         width:min(90vw,300px);
       }
+
+      .mobile-menu{
+        top:72px;
+        right:12px;
+      }
+
+      [dir="rtl"] .mobile-menu{
+        right:auto;
+        left:12px;
+      }
     }
+
   </style>
 </head>
 <body>
@@ -720,9 +717,7 @@
   <header class="hero" id="home">
     <nav class="nav">
       <a class="brand" href="#home">SAKKSI<span>.com</span></a>
-      <button class="mobile-menu-btn" type="button" onclick="toggleMobileMenu()" aria-label="Menu">
-  ☰
-</button>
+      <button class="mobile-menu-btn" type="button" onclick="toggleMobileMenu()" aria-label="Open menu">☰</button>
 
       <div class="menu">
         <a href="#home" data-i18n="navHome">Home</a>
@@ -751,9 +746,9 @@
   <a href="#contact" data-i18n="contact">Contact</a>
 
   <div class="mobile-language-switch">
-    <button type="button" onclick="setLanguage('en')">EN</button>
-    <button type="button" onclick="setLanguage('ar')">AR</button>
-    <button type="button" onclick="setLanguage('fr')">FR</button>
+    <button type="button" data-lang="en" onclick="setLanguage('en')">EN</button>
+    <button type="button" data-lang="ar" onclick="setLanguage('ar')">AR</button>
+    <button type="button" data-lang="fr" onclick="setLanguage('fr')">FR</button>
   </div>
 
 </div>
@@ -916,6 +911,7 @@
 
     function setLanguage(lang){
       if(!translations[lang]) return;
+
       currentLanguage = lang;
       localStorage.setItem("sakksi-language", lang);
       document.documentElement.lang = lang;
@@ -925,14 +921,19 @@
 
       document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.dataset.i18n;
-        if(translations[lang][key] !== undefined) el.textContent = translations[lang][key];
+        if(translations[lang][key] !== undefined){
+          el.textContent = translations[lang][key];
+        }
       });
 
-      document.querySelectorAll(".language-switch button").forEach(btn => btn.classList.toggle("active", btn.dataset.lang === lang));
+      document.querySelectorAll(".language-switch button, .mobile-language-switch button").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.lang === lang);
+      });
+
       welcomeBubble.innerHTML = translations[lang].welcome;
       chatInput.placeholder = translations[lang].chatPlaceholder;
       updateService();
-    }
+}
 
     function showHologram(){ saksiHologram.classList.add("show"); saksiBeam.classList.add("show"); }
     function hideHologram(){ saksiHologram.classList.remove("show"); saksiBeam.classList.remove("show"); }
@@ -969,6 +970,22 @@
         body.scrollTop = body.scrollHeight;
       }, 450);
     }
+
+    function toggleMobileMenu(){
+      const mobileMenu = document.getElementById("mobileMenu");
+      if(mobileMenu){
+        mobileMenu.classList.toggle("open");
+      }
+    }
+
+    document.querySelectorAll("#mobileMenu a").forEach(link => {
+      link.addEventListener("click", () => {
+        const mobileMenu = document.getElementById("mobileMenu");
+        if(mobileMenu){
+          mobileMenu.classList.remove("open");
+        }
+      });
+    });
 
     window.addEventListener("DOMContentLoaded", () => {
       const saved = localStorage.getItem("sakksi-language");
