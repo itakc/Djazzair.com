@@ -538,6 +538,18 @@
         background:
           linear-gradient(180deg, rgba(2,8,23,.10) 0%, rgba(2,8,23,.06) 18%, rgba(2,8,23,.18) 62%, rgba(2,8,23,.52) 100%),
           url("vitrine-mobile.png") center center / cover no-repeat;
+        .mobile-menu-btn{
+  display:block;
+}
+
+.language-switch,
+.login{
+  display:none;
+}
+
+.menu{
+  display:none;
+}
       }
 
       .brand{ font-size:1.55rem; }
@@ -570,6 +582,78 @@
       .display-copy p{
         font-size:.88rem;
       }
+      .mobile-menu-btn{
+  display:none;
+  width:44px;
+  height:44px;
+  border-radius:12px;
+  border:1px solid rgba(88,220,255,.28);
+  background:rgba(2,8,23,.22);
+  color:white;
+  font-size:1.45rem;
+  cursor:pointer;
+  backdrop-filter:blur(8px);
+}
+
+.mobile-menu{
+  display:none;
+  position:absolute;
+  top:72px;
+  right:12px;
+  z-index:50;
+
+  width:min(280px,88vw);
+
+  padding:14px;
+
+  border-radius:18px;
+
+  background:rgba(3,14,34,.88);
+  border:1px solid rgba(88,220,255,.25);
+
+  backdrop-filter:blur(18px);
+
+  box-shadow:
+    0 15px 45px rgba(0,0,0,.35),
+    0 0 25px rgba(0,130,255,.12);
+}
+
+.mobile-menu.open{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.mobile-menu a{
+  padding:12px 14px;
+  border-radius:12px;
+  color:#edf9ff;
+}
+
+.mobile-menu a:hover{
+  background:rgba(38,171,255,.12);
+}
+
+.mobile-language-switch{
+  display:flex;
+  gap:8px;
+  margin-top:8px;
+  padding-top:12px;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+
+.mobile-language-switch button{
+  flex:1;
+  padding:10px;
+  border-radius:10px;
+
+  border:1px solid rgba(88,220,255,.22);
+
+  background:rgba(38,171,255,.08);
+  color:white;
+
+  cursor:pointer;
+}
 
       .service-dock{
         justify-content:flex-start;
@@ -636,6 +720,9 @@
   <header class="hero" id="home">
     <nav class="nav">
       <a class="brand" href="#home">SAKKSI<span>.com</span></a>
+      <button class="mobile-menu-btn" type="button" onclick="toggleMobileMenu()" aria-label="Menu">
+  ☰
+</button>
 
       <div class="menu">
         <a href="#home" data-i18n="navHome">Home</a>
@@ -654,6 +741,22 @@
         <a class="login" href="#contact" data-i18n="contact">Contact</a>
       </div>
     </nav>
+    <div class="mobile-menu" id="mobileMenu">
+
+  <a href="#home" data-i18n="navHome">Home</a>
+  <a href="#services" data-i18n="navProducts">Products</a>
+  <a href="#solutions" data-i18n="navSolutions">Solutions</a>
+  <a href="#resources" data-i18n="navResources">Resources</a>
+  <a href="#investors" data-i18n="navInvestors">Investors</a>
+  <a href="#contact" data-i18n="contact">Contact</a>
+
+  <div class="mobile-language-switch">
+    <button type="button" onclick="setLanguage('en')">EN</button>
+    <button type="button" onclick="setLanguage('ar')">AR</button>
+    <button type="button" onclick="setLanguage('fr')">FR</button>
+  </div>
+
+</div>
 
     <div class="hero-stage">
       <div class="floating-note" data-i18n="floatingNote">AI Platform • SAKKSI • Immersive Experience</div>
@@ -871,6 +974,12 @@
       const saved = localStorage.getItem("sakksi-language");
       setLanguage(saved && translations[saved] ? saved : "en");
     });
+
+    const mobileMenu = document.getElementById("mobileMenu");
+
+if(mobileMenu){
+  mobileMenu.classList.remove("open");
+}
   </script>
 
 </body>
