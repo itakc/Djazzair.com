@@ -66,20 +66,6 @@
       background:linear-gradient(180deg, rgba(2,8,23,.10), rgba(2,8,23,0));
     }
 
-    .brand{
-      font-size:2rem;
-      font-weight:800;
-      letter-spacing:-1px;
-      white-space:nowrap;
-      text-shadow:0 0 18px rgba(0,0,0,.25);
-    }
-    .brand span{
-      background:linear-gradient(90deg,#5fe6ff,#14a4ff);
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
-
     .menu{
       display:flex;
       align-items:center;
@@ -207,57 +193,6 @@
       margin-bottom:8px;
     }
 
-    .service-display{
-      min-height:74px;
-      max-width:860px;
-      width:min(90vw,860px);
-      padding:16px 18px;
-      border-radius:22px;
-      border:1px solid rgba(88,220,255,.24);
-      background:linear-gradient(180deg, rgba(4,16,40,.16), rgba(4,16,40,.26));
-      backdrop-filter:blur(10px);
-      box-shadow:0 0 28px rgba(8,115,255,.13);
-      display:flex;
-      align-items:center;
-      gap:14px;
-      opacity:0;
-      transform:translateY(10px);
-      pointer-events:none;
-      transition:.24s ease;
-    }
-
-    .service-display.show{
-      opacity:1;
-      transform:translateY(0);
-      pointer-events:auto;
-    }
-
-    .display-icon{
-      width:46px;
-      height:46px;
-      border-radius:14px;
-      display:grid;
-      place-items:center;
-      background:rgba(38,171,255,.12);
-      border:1px solid rgba(88,220,255,.28);
-      color:var(--cyan);
-      font-size:1.25rem;
-      flex:0 0 auto;
-    }
-
-    .display-copy strong{
-      display:block;
-      font-size:1rem;
-      margin-bottom:3px;
-      color:#ffffff;
-    }
-
-    .display-copy p{
-      color:var(--muted);
-      line-height:1.5;
-      font-size:.95rem;
-    }
-
     .service-dock{
       width:min(1100px,100%);
       display:flex;
@@ -305,14 +240,6 @@
     .service-pill .label{
       font-size:.94rem;
       white-space:nowrap;
-    }
-
-    .service-tip{
-      color:#d2e5f1;
-      font-size:.88rem;
-      text-align:center;
-      text-shadow:0 0 12px rgba(0,0,0,.25);
-      opacity:.92;
     }
 
     /* SAKSI launcher and chat */
@@ -630,18 +557,6 @@
         padding:0 12px 108px;
       }
 
-      .floating-note{
-        top:16px;
-        left:12px;
-        font-size:.78rem;
-        padding:8px 12px;
-      }
-
-      [dir="rtl"] .floating-note{
-        left:auto;
-        right:12px;
-      }
-
       .dock-wrap{ gap:10px; }
 
       .service-display{
@@ -716,7 +631,6 @@
 
   <header class="hero" id="home">
     <nav class="nav">
-      <a class="brand" href="#home">SAKKSI<span>.com</span></a>
       <button class="mobile-menu-btn" type="button" onclick="toggleMobileMenu()" aria-label="Open menu">☰</button>
 
       <div class="menu">
@@ -752,18 +666,7 @@
   </div>
 
 </div>
-
-    <div class="hero-stage">
-      <div class="floating-note" data-i18n="floatingNote">AI Platform • SAKKSI • Immersive Experience</div>
-
       <div class="dock-wrap" id="services">
-        <div class="service-display show" id="serviceDisplay">
-          <div class="display-icon" id="displayIcon">💬</div>
-          <div class="display-copy">
-            <strong id="displayTitle">AI Chat</strong>
-            <p id="displayText">Fast, contextual and natural answers.</p>
-          </div>
-        </div>
 
         <div class="service-dock">
           <button class="service-pill active" type="button" data-service="chat" onclick="selectService(this)">
@@ -782,8 +685,6 @@
             <span class="icon">◇</span><span class="label" data-i18n="serviceCustom">Custom Solutions</span>
           </button>
         </div>
-
-        <div class="service-tip" data-i18n="serviceTip">Select a capability to discover more • SAKKSI stays fully visible</div>
       </div>
     </div>
   </header>
@@ -882,11 +783,6 @@
 
     let currentLanguage = "en";
     let activeService = "chat";
-
-    const display = document.getElementById("serviceDisplay");
-    const displayIcon = document.getElementById("displayIcon");
-    const displayTitle = document.getElementById("displayTitle");
-    const displayText = document.getElementById("displayText");
     const pills = document.querySelectorAll(".service-pill");
     const chatbox = document.getElementById("chatbox");
     const saksiHologram = document.getElementById("saksiHologram");
@@ -894,19 +790,10 @@
     const welcomeBubble = document.getElementById("welcomeBubble");
     const chatInput = document.getElementById("chatInput");
 
-    function updateService(){
-      const service = translations[currentLanguage].services[activeService];
-      displayIcon.textContent = service.icon;
-      displayTitle.textContent = service.title;
-      displayText.textContent = service.text;
-      display.classList.add("show");
-    }
-
     function selectService(button){
       pills.forEach(p => p.classList.remove("active"));
       button.classList.add("active");
       activeService = button.dataset.service;
-      updateService();
     }
 
     function setLanguage(lang){
