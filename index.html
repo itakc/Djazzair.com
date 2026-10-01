@@ -594,7 +594,91 @@
         right:12px;
         bottom:12px;
       }
+.service-dock{
+  width:min(1200px,96%);
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  flex-wrap:wrap;
 
+  position:absolute;
+  left:50%;
+  bottom:28px;
+  transform:translateX(-50%);
+
+  z-index:8;
+}
+
+.service-item{
+  position:relative;
+}
+
+.service-panel{
+  position:absolute;
+  left:50%;
+  bottom:72px;
+
+  width:260px;
+
+  transform:
+    translateX(-50%)
+    translateY(14px)
+    scale(.96);
+
+  opacity:0;
+  pointer-events:none;
+
+  padding:16px 18px;
+
+  border-radius:18px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(3,16,38,.22),
+      rgba(3,16,38,.38)
+    );
+
+  border:
+    1px solid rgba(88,220,255,.28);
+
+  backdrop-filter:blur(12px);
+
+  box-shadow:
+    0 0 24px rgba(0,140,255,.12);
+
+  transition:
+    opacity .22s ease,
+    transform .22s ease;
+}
+
+.service-item.open .service-panel{
+  opacity:1;
+  pointer-events:auto;
+
+  transform:
+    translateX(-50%)
+    translateY(0)
+    scale(1);
+}
+
+.service-panel strong{
+  display:block;
+
+  margin-bottom:6px;
+
+  color:#8eeeff;
+
+  font-size:.98rem;
+}
+
+.service-panel p{
+  color:#d4e7f5;
+
+  font-size:.90rem;
+
+  line-height:1.5;
+}
       .saksi-hologram{
         right:-14vw;
         width:88vw;
@@ -667,26 +751,79 @@
 
 </div>
       <div class="dock-wrap" id="services">
+<div class="service-dock">
 
-        <div class="service-dock">
-          <button class="service-pill active" type="button" data-service="chat" onclick="selectService(this)">
-            <span class="icon">💬</span><span class="label" data-i18n="serviceChat">AI Chat</span>
-          </button>
-          <button class="service-pill" type="button" data-service="content" onclick="selectService(this)">
-            <span class="icon">✦</span><span class="label" data-i18n="serviceContent">Content Creation</span>
-          </button>
-          <button class="service-pill" type="button" data-service="data" onclick="selectService(this)">
-            <span class="icon">▥</span><span class="label" data-i18n="serviceData">Data Analysis</span>
-          </button>
-          <button class="service-pill" type="button" data-service="automation" onclick="selectService(this)">
-            <span class="icon">⚙</span><span class="label" data-i18n="serviceAutomation">Automation</span>
-          </button>
-          <button class="service-pill" type="button" data-service="custom" onclick="selectService(this)">
-            <span class="icon">◇</span><span class="label" data-i18n="serviceCustom">Custom Solutions</span>
-          </button>
-        </div>
-      </div>
+  <div class="service-item">
+    <button class="service-pill" type="button"
+            data-service="chat"
+            onclick="toggleService(this)">
+      <span class="icon">💬</span>
+      <span class="label" data-i18n="serviceChat">AI Chat</span>
+    </button>
+
+    <div class="service-panel">
+      <strong data-service-title="chat">AI Chat</strong>
+      <p data-service-text="chat">Fast, contextual and natural answers.</p>
     </div>
+  </div>
+
+  <div class="service-item">
+    <button class="service-pill" type="button"
+            data-service="content"
+            onclick="toggleService(this)">
+      <span class="icon">✦</span>
+      <span class="label" data-i18n="serviceContent">Content Creation</span>
+    </button>
+
+    <div class="service-panel">
+      <strong data-service-title="content">Content Creation</strong>
+      <p data-service-text="content">Generate text, ideas and visual concepts for your projects.</p>
+    </div>
+  </div>
+
+  <div class="service-item">
+    <button class="service-pill" type="button"
+            data-service="data"
+            onclick="toggleService(this)">
+      <span class="icon">▥</span>
+      <span class="label" data-i18n="serviceData">Data Analysis</span>
+    </button>
+
+    <div class="service-panel">
+      <strong data-service-title="data">Data Analysis</strong>
+      <p data-service-text="data">Turn your data into useful, understandable insights.</p>
+    </div>
+  </div>
+
+  <div class="service-item">
+    <button class="service-pill" type="button"
+            data-service="automation"
+            onclick="toggleService(this)">
+      <span class="icon">⚙</span>
+      <span class="label" data-i18n="serviceAutomation">Automation</span>
+    </button>
+
+    <div class="service-panel">
+      <strong data-service-title="automation">Automation</strong>
+      <p data-service-text="automation">Automate repetitive work and save valuable time.</p>
+    </div>
+  </div>
+
+  <div class="service-item">
+    <button class="service-pill" type="button"
+            data-service="custom"
+            onclick="toggleService(this)">
+      <span class="icon">◇</span>
+      <span class="label" data-i18n="serviceCustom">Custom Solutions</span>
+    </button>
+
+    <div class="service-panel">
+      <strong data-service-title="custom">Custom Solutions</strong>
+      <p data-service-text="custom">AI solutions adapted to your organization and objectives.</p>
+    </div>
+  </div>
+
+</div>
   </header>
 
   <!-- Hologramme SAKSI -->
@@ -790,11 +927,23 @@
     const welcomeBubble = document.getElementById("welcomeBubble");
     const chatInput = document.getElementById("chatInput");
 
-    function selectService(button){
-      pills.forEach(p => p.classList.remove("active"));
-      button.classList.add("active");
-      activeService = button.dataset.service;
-    }
+   function toggleService(button){
+
+  const item = button.closest(".service-item");
+
+  document
+    .querySelectorAll(".service-item")
+    .forEach(el => {
+
+      if(el !== item){
+        el.classList.remove("open");
+      }
+
+    });
+
+  item.classList.toggle("open");
+
+}
 
     function setLanguage(lang){
       if(!translations[lang]) return;
@@ -812,7 +961,35 @@
           el.textContent = translations[lang][key];
         }
       });
+function updateServicePanels(){
 
+  document
+    .querySelectorAll(".service-item")
+    .forEach(item => {
+
+      const button =
+        item.querySelector(".service-pill");
+
+      const key =
+        button.dataset.service;
+
+      const service =
+        translations[currentLanguage]
+          .services[key];
+
+      item
+        .querySelector("[data-service-title]")
+        .textContent =
+          service.title;
+
+      item
+        .querySelector("[data-service-text]")
+        .textContent =
+          service.text;
+
+    });
+
+}
       document.querySelectorAll(".language-switch button, .mobile-language-switch button").forEach(btn => {
         btn.classList.toggle("active", btn.dataset.lang === lang);
       });
