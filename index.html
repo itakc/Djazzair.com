@@ -10,91 +10,85 @@
   <style>
     :root{
       --bg:#020817;
-      --panel:rgba(5,18,43,.18);
-      --panel-strong:rgba(5,18,43,.34);
-      --line:rgba(88,220,255,.28);
-      --line-strong:rgba(88,220,255,.54);
       --txt:#f6fbff;
       --muted:#c1d5e5;
       --blue:#31c8ff;
-      --blue2:#1596ff;
       --cyan:#79ecff;
-      --shadow:0 0 35px rgba(18,153,255,.20);
+      --line:rgba(88,220,255,.28);
+      --shadow:0 0 30px rgba(18,153,255,.18);
     }
 
     *{ box-sizing:border-box; margin:0; padding:0; }
     html{ scroll-behavior:smooth; }
+
     body{
-      font-family:Inter,Segoe UI,Arial,sans-serif;
+      font-family:Inter,Segoe UI,Tahoma,Arial,sans-serif;
       background:var(--bg);
       color:var(--txt);
       overflow-x:hidden;
     }
+
     a{ color:inherit; text-decoration:none; }
-    button{ font:inherit; }
+    button,input{ font:inherit; }
 
     .hero{
       min-height:100vh;
       position:relative;
       overflow:hidden;
       background:
-        linear-gradient(180deg, rgba(2,8,23,.14) 0%, rgba(2,8,23,.08) 20%, rgba(2,8,23,.16) 60%, rgba(2,8,23,.50) 100%),
+        linear-gradient(180deg, rgba(2,8,23,.10) 0%, rgba(2,8,23,.06) 25%, rgba(2,8,23,.14) 65%, rgba(2,8,23,.42) 100%),
         url("djazzair-hero.png") center center / cover no-repeat;
-    }
-
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      background:
-        radial-gradient(circle at 50% 100%, rgba(50,183,255,.14), transparent 26%),
-        radial-gradient(circle at 82% 34%, rgba(50,183,255,.08), transparent 18%);
     }
 
     .nav{
       position:relative;
-      z-index:5;
-      width:min(1440px,92%);
+      z-index:10;
+      width:min(1440px,94%);
       margin:0 auto;
-      height:88px;
+      min-height:84px;
       display:flex;
       align-items:center;
-      justify-content:space-between;
-      gap:24px;
+      justify-content:center;
+      gap:26px;
       border-bottom:1px solid rgba(255,255,255,.08);
-      background:linear-gradient(180deg, rgba(2,8,23,.10), rgba(2,8,23,0));
     }
 
     .menu{
       display:flex;
       align-items:center;
-      gap:34px;
+      gap:38px;
       color:#eef8ff;
       font-size:1rem;
-      text-shadow:0 0 12px rgba(0,0,0,.24);
+      text-shadow:0 0 12px rgba(0,0,0,.28);
     }
 
     .menu a{
       position:relative;
-      opacity:.92;
-      transition:.22s;
+      opacity:.94;
+      white-space:nowrap;
+      transition:.2s;
     }
+
     .menu a:hover{ opacity:1; }
+
     .menu a::after{
       content:"";
       position:absolute;
-      left:0; right:0; bottom:-12px;
+      left:0;
+      right:0;
+      bottom:-10px;
       height:2px;
       transform:scaleX(0);
-      transform-origin:center;
-      transition:.22s;
+      transition:.2s;
       background:linear-gradient(90deg,var(--blue),var(--cyan));
-      box-shadow:0 0 18px rgba(49,200,255,.85);
+      box-shadow:0 0 15px rgba(49,200,255,.7);
     }
+
     .menu a:hover::after{ transform:scaleX(1); }
 
     .nav-actions{
+      position:absolute;
+      right:0;
       display:flex;
       align-items:center;
       gap:12px;
@@ -102,103 +96,72 @@
 
     .language-switch{
       display:flex;
-      align-items:center;
       gap:4px;
       padding:4px;
-      border:1px solid rgba(88,220,255,.28);
+      border:1px solid var(--line);
       border-radius:999px;
-      background:rgba(2,8,23,.18);
-      backdrop-filter:blur(8px);
+      background:rgba(2,8,23,.24);
+      backdrop-filter:blur(9px);
       box-shadow:var(--shadow);
     }
 
     .language-switch button{
       border:0;
-      color:#d8e9f7;
+      color:#dbeaf6;
       background:transparent;
       cursor:pointer;
       min-width:38px;
       height:32px;
       padding:0 9px;
       border-radius:999px;
-      transition:.2s;
       font-size:.83rem;
       font-weight:700;
+      transition:.2s;
     }
 
-    .language-switch button:hover,
-    .language-switch button.active{
-      color:#fff;
+    .language-switch button.active,
+    .language-switch button:hover{
+      color:white;
       background:rgba(38,171,255,.18);
       box-shadow:inset 0 0 0 1px rgba(88,220,255,.24);
     }
 
-    .lang, .login{
-      border:1px solid rgba(88,220,255,.28);
-      background:rgba(2,8,23,.14);
-      backdrop-filter:blur(7px);
-      color:#f4fbff;
-      box-shadow:var(--shadow);
-    }
-
-    .lang{
-      border-radius:16px;
-      padding:10px 13px;
-    }
-
     .login{
-      padding:12px 20px;
+      padding:11px 19px;
+      border:1px solid var(--line);
       border-radius:999px;
-      transition:.22s;
-    }
-
-    .login:hover{
-      background:rgba(23,151,255,.18);
-      border-color:rgba(88,220,255,.48);
+      background:rgba(2,8,23,.18);
+      backdrop-filter:blur(9px);
+      box-shadow:var(--shadow);
+      white-space:nowrap;
     }
 
     .hero-stage{
       position:relative;
       z-index:3;
-      min-height:calc(100vh - 88px);
+      min-height:calc(100vh - 84px);
       display:flex;
       align-items:flex-end;
       justify-content:center;
-      padding:0 4% 28px;
+      padding:0 18px 26px;
     }
 
-    .floating-note{
-      position:absolute;
-      top:32px;
-      left:4%;
-      padding:10px 14px;
-      border-radius:999px;
-      border:1px solid rgba(88,220,255,.20);
-      background:rgba(4,17,40,.14);
-      backdrop-filter:blur(8px);
-      color:#eaf8ff;
-      font-size:.90rem;
-      letter-spacing:.04em;
-      box-shadow:0 0 18px rgba(13,128,255,.10);
-      opacity:.90;
-    }
-
-    /* floating service dock */
     .dock-wrap{
-      width:min(1200px,100%);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:12px;
-      margin-bottom:8px;
+      width:min(1320px,98%);
+      position:relative;
+      z-index:8;
     }
 
     .service-dock{
-      width:min(1100px,100%);
       display:flex;
       justify-content:center;
       gap:12px;
       flex-wrap:wrap;
+      align-items:flex-end;
+    }
+
+    .service-item{
+      position:relative;
     }
 
     .service-pill{
@@ -206,11 +169,11 @@
       align-items:center;
       gap:10px;
       min-height:54px;
-      padding:11px 16px;
+      padding:11px 17px;
       border-radius:999px;
-      border:1px solid rgba(88,220,255,.24);
-      background:linear-gradient(180deg, rgba(4,16,40,.16), rgba(4,16,40,.24));
-      backdrop-filter:blur(10px);
+      border:1px solid rgba(88,220,255,.28);
+      background:linear-gradient(180deg, rgba(4,16,40,.18), rgba(4,16,40,.30));
+      backdrop-filter:blur(12px);
       color:#eff9ff;
       cursor:pointer;
       box-shadow:0 0 20px rgba(8,115,255,.10);
@@ -218,11 +181,11 @@
     }
 
     .service-pill:hover,
-    .service-pill.active{
+    .service-item.open .service-pill{
       transform:translateY(-2px);
-      border-color:rgba(88,220,255,.54);
-      background:linear-gradient(180deg, rgba(4,16,40,.24), rgba(4,16,40,.34));
-      box-shadow:0 0 26px rgba(8,115,255,.16);
+      border-color:rgba(88,220,255,.58);
+      background:linear-gradient(180deg, rgba(4,16,40,.28), rgba(4,16,40,.40));
+      box-shadow:0 0 28px rgba(8,115,255,.18);
     }
 
     .service-pill .icon{
@@ -238,16 +201,64 @@
     }
 
     .service-pill .label{
-      font-size:.94rem;
       white-space:nowrap;
+      font-size:.93rem;
     }
 
-    /* SAKSI launcher and chat */
+    .service-panel{
+      position:absolute;
+      left:50%;
+      bottom:68px;
+      width:280px;
+      transform:translateX(-50%) translateY(12px) scale(.97);
+      opacity:0;
+      pointer-events:none;
+      padding:15px 17px;
+      border-radius:18px;
+      background:linear-gradient(180deg, rgba(3,15,36,.22), rgba(3,15,36,.40));
+      border:1px solid rgba(88,220,255,.28);
+      backdrop-filter:blur(14px);
+      box-shadow:0 0 28px rgba(0,140,255,.13);
+      transition:opacity .22s ease, transform .22s ease;
+    }
+
+    .service-item.open .service-panel{
+      opacity:1;
+      pointer-events:auto;
+      transform:translateX(-50%) translateY(0) scale(1);
+    }
+
+    .service-panel::after{
+      content:"";
+      position:absolute;
+      left:50%;
+      bottom:-8px;
+      width:14px;
+      height:14px;
+      transform:translateX(-50%) rotate(45deg);
+      background:rgba(3,15,36,.34);
+      border-right:1px solid rgba(88,220,255,.24);
+      border-bottom:1px solid rgba(88,220,255,.24);
+    }
+
+    .service-panel strong{
+      display:block;
+      margin-bottom:6px;
+      color:#89ecff;
+      font-size:.98rem;
+    }
+
+    .service-panel p{
+      color:#d5e8f4;
+      font-size:.90rem;
+      line-height:1.5;
+    }
+
     .saksi-launcher{
       position:fixed;
       right:24px;
       bottom:24px;
-      z-index:30;
+      z-index:40;
       display:flex;
       align-items:center;
       gap:12px;
@@ -256,7 +267,7 @@
       padding:10px 16px 10px 10px;
       cursor:pointer;
       color:white;
-      background:linear-gradient(180deg, rgba(4,17,40,.82), rgba(4,17,40,.92));
+      background:linear-gradient(180deg, rgba(4,17,40,.84), rgba(4,17,40,.94));
       border:1px solid rgba(88,220,255,.34);
       backdrop-filter:blur(12px);
       box-shadow:0 0 28px rgba(18,153,255,.16);
@@ -344,7 +355,7 @@
       right:clamp(86px, 14vw, 180px);
       bottom:24px;
       width:min(300px, calc(100vw - 32px));
-      background:linear-gradient(180deg, rgba(2,12,30,.05), rgba(2,12,30,.18));
+      background:linear-gradient(180deg, rgba(2,12,30,.06), rgba(2,12,30,.20));
       border:1px solid rgba(67,211,255,.28);
       border-radius:22px;
       box-shadow:0 0 22px rgba(0,130,255,.09);
@@ -369,7 +380,6 @@
       justify-content:space-between;
       align-items:center;
       border-bottom:1px solid rgba(255,255,255,.04);
-      background:transparent;
     }
 
     .chat-head strong{
@@ -429,12 +439,15 @@
       font-size:1.1rem;
     }
 
-
-    [dir="rtl"] .floating-note{ left:auto; right:4%; }
-    [dir="rtl"] .display-copy,
     [dir="rtl"] .saksi-launcher strong,
-    [dir="rtl"] .saksi-launcher small{ text-align:right; }
-    [dir="rtl"] .bubble{ text-align:right; border-radius:14px 14px 4px 14px; }
+    [dir="rtl"] .saksi-launcher small{
+      text-align:right;
+    }
+
+    [dir="rtl"] .bubble{
+      text-align:right;
+      border-radius:14px 14px 4px 14px;
+    }
 
     @keyframes holoFloat{
       from{ transform:translateY(0) scale(1); }
@@ -446,8 +459,6 @@
       to{ filter:blur(9px); opacity:1; }
     }
 
-    
-    /* Bouton hamburger : caché sur grand écran */
     .mobile-menu-btn{
       display:none;
       width:44px;
@@ -463,20 +474,21 @@
       justify-content:center;
     }
 
-    /* Menu mobile/tablette */
     .mobile-menu{
       display:none;
       position:absolute;
       top:76px;
       right:4%;
-      z-index:50;
+      z-index:60;
       width:min(280px,88vw);
       padding:14px;
       border-radius:18px;
-      background:rgba(3,14,34,.88);
+      background:rgba(3,14,34,.90);
       border:1px solid rgba(88,220,255,.25);
       backdrop-filter:blur(18px);
-      box-shadow:0 15px 45px rgba(0,0,0,.35), 0 0 25px rgba(0,130,255,.12);
+      box-shadow:
+        0 15px 45px rgba(0,0,0,.35),
+        0 0 25px rgba(0,130,255,.12);
     }
 
     .mobile-menu.open{
@@ -489,7 +501,6 @@
       padding:12px 14px;
       border-radius:12px;
       color:#edf9ff;
-      transition:.2s;
     }
 
     .mobile-menu a:hover{
@@ -512,16 +523,13 @@
       background:rgba(38,171,255,.08);
       color:white;
       cursor:pointer;
-      transition:.2s;
     }
 
-    .mobile-language-switch button:hover,
     .mobile-language-switch button.active{
       background:rgba(38,171,255,.20);
       border-color:rgba(88,220,255,.45);
     }
 
-    /* TABLETTE */
     @media (min-width:701px) and (max-width:1080px){
       .hero{
         background:
@@ -531,12 +539,32 @@
 
       .menu{ display:none; }
       .mobile-menu-btn{ display:flex; }
-      .nav{ height:76px; }
-      .hero-stage{ min-height:calc(100vh - 76px); }
-      .service-display{ width:min(92vw,760px); }
+
+      .nav{
+        min-height:76px;
+        justify-content:flex-end;
+      }
+
+      .nav-actions{
+        position:static;
+      }
+
+      .hero-stage{
+        min-height:calc(100vh - 76px);
+      }
+
+      .service-dock{
+        justify-content:flex-start;
+        flex-wrap:nowrap;
+        overflow-x:auto;
+        padding:4px 0;
+        scrollbar-width:none;
+      }
+
+      .service-dock::-webkit-scrollbar{ display:none; }
+      .service-item{ flex:0 0 auto; }
     }
 
-    /* TELEPHONE */
     @media(max-width:700px){
       .hero{
         background:
@@ -544,148 +572,78 @@
           url("vitrine-mobile.png") center center / cover no-repeat;
       }
 
-      .mobile-menu-btn{ display:flex; }
+      .menu,
       .language-switch,
-      .login,
-      .menu{ display:none; }
+      .login{
+        display:none;
+      }
 
-      .nav{ height:72px; }
-      .brand{ font-size:1.55rem; }
+      .mobile-menu-btn{
+        display:flex;
+      }
+
+      .nav{
+        min-height:72px;
+        justify-content:flex-end;
+      }
+
+      .nav-actions{
+        position:static;
+      }
 
       .hero-stage{
         min-height:calc(100vh - 72px);
-        padding:0 12px 108px;
+        padding:0 10px 96px;
       }
-
-      .dock-wrap{ gap:10px; }
-
-      .service-display{
-        min-height:88px;
-        width:100%;
-        padding:14px;
-        border-radius:18px;
-      }
-
-      .display-copy p{ font-size:.88rem; }
 
       .service-dock{
         justify-content:flex-start;
         flex-wrap:nowrap;
         overflow-x:auto;
+        gap:9px;
         padding:4px 2px;
-        width:100%;
         scrollbar-width:none;
       }
 
       .service-dock::-webkit-scrollbar{ display:none; }
 
-      .service-pill{
+      .service-item{
         flex:0 0 auto;
-        min-height:48px;
-        padding:9px 13px;
       }
 
-      .service-pill .label{ font-size:.85rem; }
-      .service-tip{ font-size:.8rem; }
-      .saksi-launcher span{ display:none; }
+      .service-pill{
+        min-height:46px;
+        padding:8px 12px;
+      }
+
+      .service-pill .label{
+        font-size:.84rem;
+      }
+
+      .service-panel{
+        width:240px;
+        bottom:60px;
+      }
 
       .saksi-launcher{
-        padding:8px;
         right:12px;
         bottom:12px;
+        padding:8px;
       }
-.service-dock{
-  width:min(1200px,96%);
-  display:flex;
-  justify-content:center;
-  gap:14px;
-  flex-wrap:wrap;
 
-  position:absolute;
-  left:50%;
-  bottom:28px;
-  transform:translateX(-50%);
+      .saksi-launcher span{
+        display:none;
+      }
 
-  z-index:8;
-}
-
-.service-item{
-  position:relative;
-}
-
-.service-panel{
-  position:absolute;
-  left:50%;
-  bottom:72px;
-
-  width:260px;
-
-  transform:
-    translateX(-50%)
-    translateY(14px)
-    scale(.96);
-
-  opacity:0;
-  pointer-events:none;
-
-  padding:16px 18px;
-
-  border-radius:18px;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(3,16,38,.22),
-      rgba(3,16,38,.38)
-    );
-
-  border:
-    1px solid rgba(88,220,255,.28);
-
-  backdrop-filter:blur(12px);
-
-  box-shadow:
-    0 0 24px rgba(0,140,255,.12);
-
-  transition:
-    opacity .22s ease,
-    transform .22s ease;
-}
-
-.service-item.open .service-panel{
-  opacity:1;
-  pointer-events:auto;
-
-  transform:
-    translateX(-50%)
-    translateY(0)
-    scale(1);
-}
-
-.service-panel strong{
-  display:block;
-
-  margin-bottom:6px;
-
-  color:#8eeeff;
-
-  font-size:.98rem;
-}
-
-.service-panel p{
-  color:#d4e7f5;
-
-  font-size:.90rem;
-
-  line-height:1.5;
-}
       .saksi-hologram{
         right:-14vw;
         width:88vw;
         max-height:72vh;
       }
 
-      .saksi-hologram.show{ opacity:.95; }
+      .saksi-hologram.show{
+        opacity:.95;
+      }
 
       .saksi-beam{
         right:5vw;
@@ -694,7 +652,7 @@
 
       .chatbox{
         right:10px;
-        bottom:84px;
+        bottom:82px;
         width:min(90vw,300px);
       }
 
@@ -708,15 +666,13 @@
         left:12px;
       }
     }
-
   </style>
 </head>
+
 <body>
 
   <header class="hero" id="home">
     <nav class="nav">
-      <button class="mobile-menu-btn" type="button" onclick="toggleMobileMenu()" aria-label="Open menu">☰</button>
-
       <div class="menu">
         <a href="#home" data-i18n="navHome">Home</a>
         <a href="#services" data-i18n="navProducts">Products</a>
@@ -731,103 +687,93 @@
           <button type="button" data-lang="ar" onclick="setLanguage('ar')">AR</button>
           <button type="button" data-lang="fr" onclick="setLanguage('fr')">FR</button>
         </div>
+
         <a class="login" href="#contact" data-i18n="contact">Contact</a>
+        <button class="mobile-menu-btn" type="button" onclick="toggleMobileMenu()" aria-label="Menu">☰</button>
       </div>
     </nav>
+
     <div class="mobile-menu" id="mobileMenu">
+      <a href="#home" data-i18n="navHome">Home</a>
+      <a href="#services" data-i18n="navProducts">Products</a>
+      <a href="#solutions" data-i18n="navSolutions">Solutions</a>
+      <a href="#resources" data-i18n="navResources">Resources</a>
+      <a href="#investors" data-i18n="navInvestors">Investors</a>
+      <a href="#contact" data-i18n="contact">Contact</a>
 
-  <a href="#home" data-i18n="navHome">Home</a>
-  <a href="#services" data-i18n="navProducts">Products</a>
-  <a href="#solutions" data-i18n="navSolutions">Solutions</a>
-  <a href="#resources" data-i18n="navResources">Resources</a>
-  <a href="#investors" data-i18n="navInvestors">Investors</a>
-  <a href="#contact" data-i18n="contact">Contact</a>
+      <div class="mobile-language-switch">
+        <button type="button" data-lang="en" onclick="setLanguage('en')">EN</button>
+        <button type="button" data-lang="ar" onclick="setLanguage('ar')">AR</button>
+        <button type="button" data-lang="fr" onclick="setLanguage('fr')">FR</button>
+      </div>
+    </div>
 
-  <div class="mobile-language-switch">
-    <button type="button" data-lang="en" onclick="setLanguage('en')">EN</button>
-    <button type="button" data-lang="ar" onclick="setLanguage('ar')">AR</button>
-    <button type="button" data-lang="fr" onclick="setLanguage('fr')">FR</button>
-  </div>
-
-</div>
+    <div class="hero-stage">
       <div class="dock-wrap" id="services">
-<div class="service-dock">
+        <div class="service-dock">
 
-  <div class="service-item">
-    <button class="service-pill" type="button"
-            data-service="chat"
-            onclick="toggleService(this)">
-      <span class="icon">💬</span>
-      <span class="label" data-i18n="serviceChat">AI Chat</span>
-    </button>
+          <div class="service-item">
+            <button class="service-pill" type="button" data-service="chat" onclick="toggleService(this)">
+              <span class="icon">💬</span>
+              <span class="label" data-i18n="serviceChat">AI Chat</span>
+            </button>
+            <div class="service-panel">
+              <strong class="service-panel-title"></strong>
+              <p class="service-panel-text"></p>
+            </div>
+          </div>
 
-    <div class="service-panel">
-      <strong data-service-title="chat">AI Chat</strong>
-      <p data-service-text="chat">Fast, contextual and natural answers.</p>
+          <div class="service-item">
+            <button class="service-pill" type="button" data-service="content" onclick="toggleService(this)">
+              <span class="icon">✦</span>
+              <span class="label" data-i18n="serviceContent">Content Creation</span>
+            </button>
+            <div class="service-panel">
+              <strong class="service-panel-title"></strong>
+              <p class="service-panel-text"></p>
+            </div>
+          </div>
+
+          <div class="service-item">
+            <button class="service-pill" type="button" data-service="data" onclick="toggleService(this)">
+              <span class="icon">▥</span>
+              <span class="label" data-i18n="serviceData">Data Analysis</span>
+            </button>
+            <div class="service-panel">
+              <strong class="service-panel-title"></strong>
+              <p class="service-panel-text"></p>
+            </div>
+          </div>
+
+          <div class="service-item">
+            <button class="service-pill" type="button" data-service="automation" onclick="toggleService(this)">
+              <span class="icon">⚙</span>
+              <span class="label" data-i18n="serviceAutomation">Automation</span>
+            </button>
+            <div class="service-panel">
+              <strong class="service-panel-title"></strong>
+              <p class="service-panel-text"></p>
+            </div>
+          </div>
+
+          <div class="service-item">
+            <button class="service-pill" type="button" data-service="custom" onclick="toggleService(this)">
+              <span class="icon">◇</span>
+              <span class="label" data-i18n="serviceCustom">Custom Solutions</span>
+            </button>
+            <div class="service-panel">
+              <strong class="service-panel-title"></strong>
+              <p class="service-panel-text"></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </div>
-  </div>
-
-  <div class="service-item">
-    <button class="service-pill" type="button"
-            data-service="content"
-            onclick="toggleService(this)">
-      <span class="icon">✦</span>
-      <span class="label" data-i18n="serviceContent">Content Creation</span>
-    </button>
-
-    <div class="service-panel">
-      <strong data-service-title="content">Content Creation</strong>
-      <p data-service-text="content">Generate text, ideas and visual concepts for your projects.</p>
-    </div>
-  </div>
-
-  <div class="service-item">
-    <button class="service-pill" type="button"
-            data-service="data"
-            onclick="toggleService(this)">
-      <span class="icon">▥</span>
-      <span class="label" data-i18n="serviceData">Data Analysis</span>
-    </button>
-
-    <div class="service-panel">
-      <strong data-service-title="data">Data Analysis</strong>
-      <p data-service-text="data">Turn your data into useful, understandable insights.</p>
-    </div>
-  </div>
-
-  <div class="service-item">
-    <button class="service-pill" type="button"
-            data-service="automation"
-            onclick="toggleService(this)">
-      <span class="icon">⚙</span>
-      <span class="label" data-i18n="serviceAutomation">Automation</span>
-    </button>
-
-    <div class="service-panel">
-      <strong data-service-title="automation">Automation</strong>
-      <p data-service-text="automation">Automate repetitive work and save valuable time.</p>
-    </div>
-  </div>
-
-  <div class="service-item">
-    <button class="service-pill" type="button"
-            data-service="custom"
-            onclick="toggleService(this)">
-      <span class="icon">◇</span>
-      <span class="label" data-i18n="serviceCustom">Custom Solutions</span>
-    </button>
-
-    <div class="service-panel">
-      <strong data-service-title="custom">Custom Solutions</strong>
-      <p data-service-text="custom">AI solutions adapted to your organization and objectives.</p>
-    </div>
-  </div>
-
-</div>
   </header>
 
-  <!-- Hologramme SAKSI -->
   <div class="saksi-beam" id="saksiBeam"></div>
+
   <img
     src="saksi-hologram.png"
     alt="SAKKSI holographic AI assistant"
@@ -835,7 +781,6 @@
     id="saksiHologram"
   >
 
-  <!-- Chat SAKSI -->
   <div class="chatbox" id="chatbox">
     <div class="chat-head">
       <strong data-i18n="chatHeader">SAKKSI • AI ASSISTANT</strong>
@@ -843,7 +788,10 @@
     </div>
 
     <div class="chat-body" id="chatBody">
-      <div class="bubble" id="welcomeBubble">Hello, I am <strong>SAKKSI</strong>.<br>How can I help you today?</div>
+      <div class="bubble" id="welcomeBubble">
+        Hello, I am <strong>SAKKSI</strong>.<br>
+        How can I help you today?
+      </div>
     </div>
 
     <form class="chat-input" onsubmit="demoMessage(event)">
@@ -865,95 +813,132 @@
       en: {
         pageTitle: "SAKKSI.com — AI Assistant",
         metaDescription: "SAKKSI.com — AI designed for the Arab and Francophone world.",
-        navHome: "Home", navProducts: "Products", navSolutions: "Solutions", navResources: "Resources", navInvestors: "Investors", contact: "Contact",
-        floatingNote: "AI Platform • SAKKSI • Immersive Experience",
-        serviceChat: "AI Chat", serviceContent: "Content Creation", serviceData: "Data Analysis", serviceAutomation: "Automation", serviceCustom: "Custom Solutions",
-        serviceTip: "Select a capability to discover more • SAKKSI stays fully visible",
-        chatHeader: "SAKKSI • AI ASSISTANT", assistantLabel: "Your AI assistant", chatPlaceholder: "Ask your question…",
+        navHome: "Home",
+        navProducts: "Products",
+        navSolutions: "Solutions",
+        navResources: "Resources",
+        navInvestors: "Investors",
+        contact: "Contact",
+        serviceChat: "AI Chat",
+        serviceContent: "Content Creation",
+        serviceData: "Data Analysis",
+        serviceAutomation: "Automation",
+        serviceCustom: "Custom Solutions",
+        chatHeader: "SAKKSI • AI ASSISTANT",
+        assistantLabel: "Your AI assistant",
+        chatPlaceholder: "Ask your question…",
         welcome: 'Hello, I am <strong>SAKKSI</strong>.<br>How can I help you today?',
         demoReply: "SAKKSI is ready. This interface can now be connected to a real AI engine.",
         services: {
-          chat:{icon:"💬",title:"AI Chat",text:"Fast, contextual and natural answers."},
-          content:{icon:"✦",title:"Content Creation",text:"Generate text, ideas and visual concepts for your projects."},
-          data:{icon:"▥",title:"Data Analysis",text:"Turn your data into useful, understandable insights."},
-          automation:{icon:"⚙",title:"Automation",text:"Automate repetitive work and save valuable time."},
-          custom:{icon:"◇",title:"Custom Solutions",text:"AI solutions adapted to your organization and objectives."}
+          chat:{ title:"AI Chat", text:"Fast, contextual and natural answers." },
+          content:{ title:"Content Creation", text:"Generate text, ideas and visual concepts for your projects." },
+          data:{ title:"Data Analysis", text:"Turn your data into useful, understandable insights." },
+          automation:{ title:"Automation", text:"Automate repetitive work and save valuable time." },
+          custom:{ title:"Custom Solutions", text:"AI solutions adapted to your organization and objectives." }
         }
       },
+
       ar: {
         pageTitle: "SAKKSI.com — مساعد الذكاء الاصطناعي",
         metaDescription: "SAKKSI.com — ذكاء اصطناعي صُمم للعالم العربي والناطق بالفرنسية.",
-        navHome: "الرئيسية", navProducts: "المنتجات", navSolutions: "الحلول", navResources: "الموارد", navInvestors: "المستثمرون", contact: "تواصل معنا",
-        floatingNote: "منصة ذكاء اصطناعي • SAKKSI • تجربة تفاعلية",
-        serviceChat: "محادثة ذكية", serviceContent: "إنشاء المحتوى", serviceData: "تحليل البيانات", serviceAutomation: "الأتمتة", serviceCustom: "حلول مخصصة",
-        serviceTip: "اختر إحدى الإمكانات لمعرفة المزيد • تبقى SAKKSI ظاهرة بالكامل",
-        chatHeader: "SAKKSI • مساعد الذكاء الاصطناعي", assistantLabel: "مساعدك الذكي", chatPlaceholder: "اكتب سؤالك…",
+        navHome: "الرئيسية",
+        navProducts: "المنتجات",
+        navSolutions: "الحلول",
+        navResources: "الموارد",
+        navInvestors: "المستثمرون",
+        contact: "تواصل معنا",
+        serviceChat: "محادثة ذكية",
+        serviceContent: "إنشاء المحتوى",
+        serviceData: "تحليل البيانات",
+        serviceAutomation: "الأتمتة",
+        serviceCustom: "حلول مخصصة",
+        chatHeader: "SAKKSI • مساعد الذكاء الاصطناعي",
+        assistantLabel: "مساعدك الذكي",
+        chatPlaceholder: "اكتب سؤالك…",
         welcome: 'مرحباً، أنا <strong>SAKKSI</strong>.<br>كيف يمكنني مساعدتك اليوم؟',
         demoReply: "SAKKSI جاهزة. يمكن الآن ربط هذه الواجهة بمحرك ذكاء اصطناعي حقيقي.",
         services: {
-          chat:{icon:"💬",title:"محادثة ذكية",text:"إجابات سريعة وطبيعية تراعي سياق المحادثة."},
-          content:{icon:"✦",title:"إنشاء المحتوى",text:"أنشئ النصوص والأفكار والمفاهيم البصرية لمشاريعك."},
-          data:{icon:"▥",title:"تحليل البيانات",text:"حوّل بياناتك إلى معلومات واضحة وقابلة للاستخدام."},
-          automation:{icon:"⚙",title:"الأتمتة",text:"أتمت المهام المتكررة ووفر الوقت."},
-          custom:{icon:"◇",title:"حلول مخصصة",text:"حلول ذكاء اصطناعي مصممة وفق احتياجاتك وأهدافك."}
+          chat:{ title:"محادثة ذكية", text:"إجابات سريعة وطبيعية تراعي سياق المحادثة." },
+          content:{ title:"إنشاء المحتوى", text:"أنشئ النصوص والأفكار والمفاهيم البصرية لمشاريعك." },
+          data:{ title:"تحليل البيانات", text:"حوّل بياناتك إلى معلومات واضحة وقابلة للاستخدام." },
+          automation:{ title:"الأتمتة", text:"أتمت المهام المتكررة ووفر الوقت." },
+          custom:{ title:"حلول مخصصة", text:"حلول ذكاء اصطناعي مصممة وفق احتياجاتك وأهدافك." }
         }
       },
+
       fr: {
         pageTitle: "SAKKSI.com — Assistante IA",
         metaDescription: "SAKKSI.com — une IA pensée pour le monde arabe et francophone.",
-        navHome: "Accueil", navProducts: "Produits", navSolutions: "Solutions", navResources: "Ressources", navInvestors: "Investisseurs", contact: "Contact",
-        floatingNote: "Plateforme IA • SAKKSI • Expérience immersive",
-        serviceChat: "Chat IA", serviceContent: "Création de contenu", serviceData: "Analyse de données", serviceAutomation: "Automatisation", serviceCustom: "Solutions sur mesure",
-        serviceTip: "Choisissez une fonctionnalité pour en savoir plus • SAKKSI reste entièrement visible",
-        chatHeader: "SAKKSI • ASSISTANTE IA", assistantLabel: "Votre assistante IA", chatPlaceholder: "Posez votre question…",
+        navHome: "Accueil",
+        navProducts: "Produits",
+        navSolutions: "Solutions",
+        navResources: "Ressources",
+        navInvestors: "Investisseurs",
+        contact: "Contact",
+        serviceChat: "Chat IA",
+        serviceContent: "Création de contenu",
+        serviceData: "Analyse de données",
+        serviceAutomation: "Automatisation",
+        serviceCustom: "Solutions sur mesure",
+        chatHeader: "SAKKSI • ASSISTANTE IA",
+        assistantLabel: "Votre assistante IA",
+        chatPlaceholder: "Posez votre question…",
         welcome: 'Bonjour, je suis <strong>SAKKSI</strong>.<br>Comment puis-je vous aider aujourd’hui ?',
         demoReply: "SAKKSI est prête. Cette interface peut maintenant être reliée à un véritable moteur d’IA.",
         services: {
-          chat:{icon:"💬",title:"Chat IA",text:"Des réponses rapides, contextualisées et naturelles."},
-          content:{icon:"✦",title:"Création de contenu",text:"Générez des textes, des idées et des concepts visuels pour vos projets."},
-          data:{icon:"▥",title:"Analyse de données",text:"Transformez vos données en informations utiles et compréhensibles."},
-          automation:{icon:"⚙",title:"Automatisation",text:"Automatisez les tâches répétitives et gagnez du temps."},
-          custom:{icon:"◇",title:"Solutions sur mesure",text:"Des solutions IA adaptées à votre activité et à vos objectifs."}
+          chat:{ title:"Chat IA", text:"Des réponses rapides, contextualisées et naturelles." },
+          content:{ title:"Création de contenu", text:"Générez des textes, des idées et des concepts visuels pour vos projets." },
+          data:{ title:"Analyse de données", text:"Transformez vos données en informations utiles et compréhensibles." },
+          automation:{ title:"Automatisation", text:"Automatisez les tâches répétitives et gagnez du temps." },
+          custom:{ title:"Solutions sur mesure", text:"Des solutions IA adaptées à votre activité et à vos objectifs." }
         }
       }
     };
 
     let currentLanguage = "en";
-    let activeService = "chat";
-    const pills = document.querySelectorAll(".service-pill");
+
     const chatbox = document.getElementById("chatbox");
     const saksiHologram = document.getElementById("saksiHologram");
     const saksiBeam = document.getElementById("saksiBeam");
     const welcomeBubble = document.getElementById("welcomeBubble");
     const chatInput = document.getElementById("chatInput");
 
-   function toggleService(button){
+    function updateServicePanels(){
+      document.querySelectorAll(".service-item").forEach(item => {
+        const button = item.querySelector(".service-pill");
+        const key = button.dataset.service;
+        const service = translations[currentLanguage].services[key];
 
-  const item = button.closest(".service-item");
+        item.querySelector(".service-panel-title").textContent = service.title;
+        item.querySelector(".service-panel-text").textContent = service.text;
+      });
+    }
 
-  document
-    .querySelectorAll(".service-item")
-    .forEach(el => {
+    function toggleService(button){
+      const currentItem = button.closest(".service-item");
 
-      if(el !== item){
-        el.classList.remove("open");
-      }
+      document.querySelectorAll(".service-item").forEach(item => {
+        if(item !== currentItem){
+          item.classList.remove("open");
+        }
+      });
 
-    });
-
-  item.classList.toggle("open");
-
-}
+      currentItem.classList.toggle("open");
+    }
 
     function setLanguage(lang){
       if(!translations[lang]) return;
 
       currentLanguage = lang;
       localStorage.setItem("sakksi-language", lang);
+
       document.documentElement.lang = lang;
       document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
       document.title = translations[lang].pageTitle;
-      document.getElementById("metaDescription").setAttribute("content", translations[lang].metaDescription);
+
+      document
+        .getElementById("metaDescription")
+        .setAttribute("content", translations[lang].metaDescription);
 
       document.querySelectorAll("[data-i18n]").forEach(el => {
         const key = el.dataset.i18n;
@@ -961,54 +946,73 @@
           el.textContent = translations[lang][key];
         }
       });
-function updateServicePanels(){
 
-  document
-    .querySelectorAll(".service-item")
-    .forEach(item => {
-
-      const button =
-        item.querySelector(".service-pill");
-
-      const key =
-        button.dataset.service;
-
-      const service =
-        translations[currentLanguage]
-          .services[key];
-
-      item
-        .querySelector("[data-service-title]")
-        .textContent =
-          service.title;
-
-      item
-        .querySelector("[data-service-text]")
-        .textContent =
-          service.text;
-
-    });
-
-}
-      document.querySelectorAll(".language-switch button, .mobile-language-switch button").forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.lang === lang);
-      });
+      document
+        .querySelectorAll(".language-switch button, .mobile-language-switch button")
+        .forEach(btn => {
+          btn.classList.toggle("active", btn.dataset.lang === lang);
+        });
 
       welcomeBubble.innerHTML = translations[lang].welcome;
       chatInput.placeholder = translations[lang].chatPlaceholder;
-      updateService();
-}
 
-    function showHologram(){ saksiHologram.classList.add("show"); saksiBeam.classList.add("show"); }
-    function hideHologram(){ saksiHologram.classList.remove("show"); saksiBeam.classList.remove("show"); }
-    function openSaksi(){ showHologram(); setTimeout(() => chatbox.classList.add("open"), 320); }
-    function closeSaksi(){ chatbox.classList.remove("open"); hideHologram(); }
-    function toggleSaksi(){ chatbox.classList.contains("open") ? closeSaksi() : openSaksi(); }
+      updateServicePanels();
+
+      const mobileMenu = document.getElementById("mobileMenu");
+      if(mobileMenu){
+        mobileMenu.classList.remove("open");
+      }
+    }
+
+    function toggleMobileMenu(){
+      const mobileMenu = document.getElementById("mobileMenu");
+      if(mobileMenu){
+        mobileMenu.classList.toggle("open");
+      }
+    }
+
+    document.querySelectorAll("#mobileMenu a").forEach(link => {
+      link.addEventListener("click", () => {
+        document.getElementById("mobileMenu").classList.remove("open");
+      });
+    });
+
+    function showHologram(){
+      saksiHologram.classList.add("show");
+      saksiBeam.classList.add("show");
+    }
+
+    function hideHologram(){
+      saksiHologram.classList.remove("show");
+      saksiBeam.classList.remove("show");
+    }
+
+    function openSaksi(){
+      showHologram();
+      setTimeout(() => {
+        chatbox.classList.add("open");
+      }, 320);
+    }
+
+    function closeSaksi(){
+      chatbox.classList.remove("open");
+      hideHologram();
+    }
+
+    function toggleSaksi(){
+      if(chatbox.classList.contains("open")){
+        closeSaksi();
+      }else{
+        openSaksi();
+      }
+    }
 
     function demoMessage(event){
       event.preventDefault();
+
       const body = document.getElementById("chatBody");
       const message = chatInput.value.trim();
+
       if(!message) return;
 
       const user = document.createElement("div");
@@ -1021,6 +1025,7 @@ function updateServicePanels(){
       user.style.fontSize = ".95rem";
       user.style.direction = currentLanguage === "ar" ? "rtl" : "ltr";
       user.textContent = message;
+
       body.appendChild(user);
       chatInput.value = "";
 
@@ -1030,37 +1035,23 @@ function updateServicePanels(){
         reply.style.marginTop = "12px";
         reply.style.direction = currentLanguage === "ar" ? "rtl" : "ltr";
         reply.textContent = translations[currentLanguage].demoReply;
+
         body.appendChild(reply);
         body.scrollTop = body.scrollHeight;
       }, 450);
     }
 
-    function toggleMobileMenu(){
-      const mobileMenu = document.getElementById("mobileMenu");
-      if(mobileMenu){
-        mobileMenu.classList.toggle("open");
-      }
-    }
-
-    document.querySelectorAll("#mobileMenu a").forEach(link => {
-      link.addEventListener("click", () => {
-        const mobileMenu = document.getElementById("mobileMenu");
-        if(mobileMenu){
-          mobileMenu.classList.remove("open");
-        }
-      });
-    });
-
     window.addEventListener("DOMContentLoaded", () => {
-      const saved = localStorage.getItem("sakksi-language");
-      setLanguage(saved && translations[saved] ? saved : "en");
+      const savedLanguage = localStorage.getItem("sakksi-language");
+
+      setLanguage(
+        savedLanguage && translations[savedLanguage]
+          ? savedLanguage
+          : "en"
+      );
+
+      updateServicePanels();
     });
-
-    const mobileMenu = document.getElementById("mobileMenu");
-
-if(mobileMenu){
-  mobileMenu.classList.remove("open");
-}
   </script>
 
 </body>
