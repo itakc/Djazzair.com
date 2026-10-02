@@ -153,12 +153,16 @@
     }
 
     .service-dock{
-      display:flex;
-      justify-content:center;
-      gap:12px;
-      flex-wrap:wrap;
-      align-items:flex-end;
-    }
+  display:flex;
+  justify-content:flex-end;
+  gap:12px;
+  flex-wrap:wrap;
+  align-items:flex-end;
+
+  width:100%;
+  padding-left:240px;
+  padding-right:30px;
+}
 
     .service-item{
       position:relative;
@@ -255,23 +259,43 @@
     }
 
     .saksi-launcher{
-      position:fixed;
-      right:24px;
-      bottom:24px;
-      z-index:40;
-      display:flex;
-      align-items:center;
-      gap:12px;
-      border:none;
-      border-radius:999px;
-      padding:10px 16px 10px 10px;
-      cursor:pointer;
-      color:white;
-      background:linear-gradient(180deg, rgba(4,17,40,.84), rgba(4,17,40,.94));
-      border:1px solid rgba(88,220,255,.34);
-      backdrop-filter:blur(12px);
-      box-shadow:0 0 28px rgba(18,153,255,.16);
-    }
+  position:fixed;
+
+  left:24px;
+  right:auto;
+  bottom:24px;
+
+  z-index:40;
+
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  border:none;
+  border-radius:999px;
+
+  padding:10px 16px 10px 10px;
+
+  cursor:pointer;
+  color:white;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(4,17,40,.84),
+      rgba(4,17,40,.94)
+    );
+
+  border:
+    1px solid rgba(88,220,255,.34);
+
+  backdrop-filter:blur(12px);
+
+  box-shadow:
+    0 0 28px rgba(18,153,255,.16);
+
+  animation:sakksiBounce 1.8s ease-in-out infinite;
+}
 
     .orb{
       width:44px;
@@ -349,6 +373,17 @@
       transform:scale(1);
       animation:beamPulse 1.8s ease-in-out infinite alternate;
     }
+    @keyframes sakksiBounce{
+
+  0%, 100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-10px);
+  }
+
+}
 
     .chatbox{
       position:fixed;
