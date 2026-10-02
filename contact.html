@@ -60,32 +60,12 @@
       min-height:84px;
       display:flex;
       align-items:center;
-      justify-content:space-between;
+      justify-content:flex-end;
       gap:24px;
       border-bottom:1px solid rgba(255,255,255,.08);
     }
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      font-weight:800;
-      letter-spacing:.04em;
-      color:#76ecff;
-      text-shadow:0 0 18px rgba(49,200,255,.28);
-      white-space:nowrap;
-    }
 
-    .brand-orb{
-      width:38px;
-      height:38px;
-      border-radius:50%;
-      display:grid;
-      place-items:center;
-      color:#06111f;
-      background:radial-gradient(circle at 30% 30%, #f0ffff, #56eaff 35%, #1d9eff 70%, #092865);
-      box-shadow:0 0 22px rgba(75,222,255,.62);
-    }
 
     .nav-actions{
       display:flex;
@@ -157,21 +137,6 @@
 
     .intro{ max-width:520px; }
 
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:9px;
-      margin-bottom:18px;
-      padding:7px 11px;
-      border:1px solid rgba(88,220,255,.20);
-      border-radius:999px;
-      background:rgba(3,15,36,.26);
-      color:#8cefff;
-      font-size:.82rem;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-      backdrop-filter:blur(9px);
-    }
 
     .intro h1{
       font-size:clamp(2.3rem,5vw,4.7rem);
@@ -196,33 +161,38 @@
   grid-column:2;
   grid-row:1;
 }
-    .contact-email{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      margin-top:26px;
-      color:#83edff;
-      font-weight:700;
-    }
 
-    .contact-email::before{
-      content:"✉";
-      width:34px;
-      height:34px;
-      display:grid;
-      place-items:center;
-      border-radius:10px;
-      background:rgba(38,171,255,.10);
-      border:1px solid rgba(88,220,255,.18);
-    }
 
     .form-card{
+      position:relative;
+      overflow:hidden;
       padding:26px;
-      border:1px solid rgba(88,220,255,.26);
+      border:1px solid rgba(102,232,255,.34);
       border-radius:28px;
-      background:linear-gradient(180deg, rgba(4,16,40,.40), rgba(4,16,40,.56));
-      backdrop-filter:blur(18px);
-      box-shadow:0 22px 60px rgba(0,0,0,.24),0 0 36px rgba(18,153,255,.12);
+      background:
+        linear-gradient(145deg, rgba(21,92,150,.14), rgba(3,14,34,.16) 48%, rgba(25,151,210,.10));
+      backdrop-filter:blur(10px) saturate(135%);
+      -webkit-backdrop-filter:blur(10px) saturate(135%);
+      box-shadow:
+        inset 0 0 24px rgba(92,226,255,.055),
+        0 0 20px rgba(46,190,255,.10),
+        0 18px 50px rgba(0,0,0,.16);
+    }
+
+    .form-card::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:
+        linear-gradient(110deg, transparent 0 34%, rgba(126,240,255,.07) 48%, transparent 62%),
+        radial-gradient(circle at 18% 8%, rgba(121,236,255,.10), transparent 24%);
+      mix-blend-mode:screen;
+    }
+
+    .form-card > *{
+      position:relative;
+      z-index:1;
     }
 
     .form-card h2{ margin-bottom:6px; font-size:1.35rem; color:#f5fcff; }
@@ -262,7 +232,7 @@
       width:100%;
       border:1px solid rgba(88,220,255,.20);
       border-radius:14px;
-      background:rgba(5,20,43,.54);
+      background:rgba(4,18,38,.30);
       color:white;
       outline:none;
       padding:13px 14px;
@@ -276,7 +246,7 @@
     input:focus,select:focus,textarea:focus{
       border-color:rgba(88,220,255,.60);
       box-shadow:0 0 0 3px rgba(49,200,255,.08);
-      background:rgba(5,20,43,.68);
+      background:rgba(8,31,58,.42);
     }
 
     .submit-row{
@@ -346,6 +316,26 @@
     [dir="rtl"] .intro,
     [dir="rtl"] .form-card{ text-align:right; }
 
+    /* Keep the same visual composition in Arabic:
+       form on the left, presentation on the right. */
+    [dir="rtl"] .form-card{
+      grid-column:1;
+      grid-row:1;
+    }
+
+    [dir="rtl"] .intro{
+      grid-column:2;
+      grid-row:1;
+    }
+
+    [dir="rtl"] .nav{
+      direction:ltr;
+    }
+
+    [dir="rtl"] .nav-actions{
+      direction:ltr;
+    }
+
     @media (min-width:701px) and (max-width:1080px){
       .page{
         background:
@@ -371,7 +361,6 @@
       }
 
       .nav{ min-height:72px; width:92%; }
-      .brand span{ display:none; }
       .nav-actions{ gap:8px; }
 
       .language-switch button{
@@ -419,11 +408,6 @@
 <body>
   <main class="page">
     <nav class="nav">
-      <a class="brand" href="index.html" aria-label="SAKKSI Home">
-        <span class="brand-orb">S</span>
-        <span>SAKKSI</span>
-      </a>
-
       <div class="nav-actions">
         <div class="language-switch" aria-label="Language selector">
           <button type="button" class="active" data-lang="en" onclick="setLanguage('en')">EN</button>
@@ -437,8 +421,6 @@
 
     <section class="contact-wrap">
       <div class="intro">
-        <div class="eyebrow" data-i18n="eyebrow">CONTACT • SAKKSI</div>
-
         <h1>
           <span data-i18n="titleLine1">Let's build</span><br>
           <span data-i18n="titleLine2">the next idea.</span>
@@ -449,7 +431,6 @@
           Send us a message and tell us what you have in mind.
         </p>
 
-        <a class="contact-email" href="mailto:contact@sakksi.com">contact@sakksi.com</a>
       </div>
 
       <div class="form-card">
