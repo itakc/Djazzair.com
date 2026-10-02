@@ -37,7 +37,7 @@
       overflow:hidden;
       background:
         linear-gradient(180deg, rgba(2,8,23,.10) 0%, rgba(2,8,23,.06) 25%, rgba(2,8,23,.14) 65%, rgba(2,8,23,.42) 100%),
-        url("djazzair-hero.png") center center / cover no-repeat;
+        url("djazzair-hero.png") 58% 42% / cover no-repeat;
     }
 
     .nav{
@@ -102,29 +102,29 @@
     }
 
     .language-switch{
-      display:flex;
-      gap:4px;
-      padding:4px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      background:rgba(2,8,23,.24);
-      backdrop-filter:blur(9px);
-      box-shadow:var(--shadow);
-    }
+  display:flex;
+  align-items:center;
+  gap:0;
+  padding:2px;
+  border:1px solid rgba(88,220,255,.20);
+  border-radius:999px;
+  background:rgba(2,8,23,.20);
+  backdrop-filter:blur(9px);
+}
 
-    .language-switch button{
-      border:0;
-      color:#dbeaf6;
-      background:transparent;
-      cursor:pointer;
-      min-width:38px;
-      height:32px;
-      padding:0 9px;
-      border-radius:999px;
-      font-size:.83rem;
-      font-weight:700;
-      transition:.2s;
-    }
+.language-switch button{
+  border:0;
+  color:#dbeaf6;
+  background:transparent;
+  cursor:pointer;
+  min-width:34px;
+  height:30px;
+  padding:0 7px;
+  border-radius:999px;
+  font-size:.78rem;
+  font-weight:700;
+  transition:.2s;
+}
 
     .language-switch button.active,
     .language-switch button:hover{
@@ -159,28 +159,30 @@
       z-index:8;
     }
 
-    .service-dock{
+   .service-dock{
   display:flex;
   justify-content:flex-end;
-  gap:12px;
-  flex-wrap:wrap;
-  align-items:flex-end;
+  align-items:center;
+
+  gap:10px;
+  flex-wrap:nowrap;
 
   width:100%;
-  padding-left:240px;
-  padding-right:30px;
-}
 
-    .service-item{
-      position:relative;
-    }
+  padding-left:200px;
+  padding-right:20px;
+}
+   .service-item{
+  position:relative;
+  flex:0 1 auto;
+}
 
     .service-pill{
       display:flex;
       align-items:center;
       gap:10px;
       min-height:54px;
-      padding:11px 17px;
+      padding:10px 14px;
       border-radius:999px;
       border:1px solid rgba(88,220,255,.28);
       background:linear-gradient(180deg, rgba(4,16,40,.18), rgba(4,16,40,.30));
