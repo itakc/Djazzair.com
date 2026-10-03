@@ -165,12 +165,13 @@
 
     .form-card{
       position:relative;
+      transform:translate(-28px,-28px);
       overflow:hidden;
       padding:26px;
       border:1px solid rgba(102,232,255,.34);
       border-radius:28px;
       background:
-        linear-gradient(145deg, rgba(21,92,150,.14), rgba(3,14,34,.16) 48%, rgba(25,151,210,.10));
+        linear-gradient(145deg,rgba(21,92,150,.08),rgba(3,14,34,.10) 48%,rgba(25,151,210,.06));
       backdrop-filter:blur(10px) saturate(135%);
       -webkit-backdrop-filter:blur(10px) saturate(135%);
       box-shadow:
@@ -351,6 +352,7 @@
       }
 
       .form-card{ width:min(700px,100%); }
+      transform:none;
     }
 
     @media(max-width:700px){
@@ -389,6 +391,7 @@
       .form-card{
         padding:19px;
         border-radius:22px;
+        transform:none;
       }
 
       .form-grid{ grid-template-columns:1fr; }
